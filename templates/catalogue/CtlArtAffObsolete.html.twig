@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	produit
+	{{ tarticle.cod }}
+{% endblock %}
+{% block body %}
+	{# {{ dump(app.flashes('success'))}} #}
+
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item">
+			<a href="{{ path('ctl_ctg')}}">Catalogue</a>
+		</li>
+		<li class="breadcrumb-item">
+			<a href="{{ path('ctl_ctg_art',{'id': tarticle.clrCtg.id } ) }}">{{tarticle.clrCtg.dsg}}</a>
+		</li>
+
+		<li class="breadcrumb-item active">{{tarticle.cod}}</li>
+	</ol>
+	<h1>
+		Produit :
+		{{ tarticle.libCrtFr }}
+		{{ tarticle.libLngFr }}
+
+
+	{% endblock %}

@@ -1,0 +1,180 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+	<div class="breadcrumb d-flex justify-content-between align-items-center">
+		<ol class="breadcrumb mb-0 p-0">
+			<li class="breadcrumb-item">Catalogue
+			</li>
+			{# <a href="{{ path('ctl_lstart') }}"></a> #}
+			{# </li> #}
+			{% if (tarticle.clrCtgice) %}
+				<li class="breadcrumb-item active">{{tarticle.clrCtgice.clrNiv1.dsg}}</li>
+			
+				{% if (tarticle.clrCtgice.clrNiv2) %}
+					<li class="breadcrumb-item active">{{tarticle.clrCtgice.clrNiv2.dsg}}</li>
+				{% endif %}
+				{% if (tarticle.clrCtgice.clrNiv3) %}
+					<li class="breadcrumb-item active">{{tarticle.clrCtgice.clrNiv3.dsg}}</li>
+				{% endif %}
+				{% if (tarticle.clrCtgice.clrNiv4) %}
+					<li class="breadcrumb-item active">{{tarticle.clrCtgice.clrNiv4.dsg}}</li>
+				{% endif %}
+			{% endif %}
+		</ol>
+		<div>
+			<a href="{{ path('art_fch_dwl',{'pers': pers }) }}">
+				<button type="button" class="btn btn-secondary btn-sm">
+					<span class="glyphicon glyphicon-download"></span>
+					<i class="fa fa-download" aria-hidden="true">Fiche article</i>
+				</button>
+			
+		    </a>
+          
+				<button type="button" onclick="toggleForm()" class="btn btn-secondary btn-sm">
+				
+					Fiche Personnalisée
+				</button>
+			
+        </div>
+	</div>
+	<div class="container ml">
+		<h5>
+
+			{% include "article/_artAff_01.html.twig" with {'tarticle' : tarticle} %}
+            
+			<div class="container bg-light border border-dark">
+				<h6>
+					<nav class="nav nav-tabs mt-2">
+						<a class="nav-item nav-link active" href="#p1" data-toggle="tab">
+							<div class="p-3 mb-2 bg-secondary text-dark">
+								Caractéristiques : 
+							</div>  
+						</a>
+						<a class="nav-item nav-link" href="#p6" data-toggle="tab">
+							<div class="p-3 mb-2 bg-secondary text-dark">
+								Tarif
+							</div>
+						</a>
+
+						<a class="nav-item nav-link" href="#p2" data-toggle="tab">
+							<div class="p-3 mb-2 bg-secondary text-dark">
+								Adonix
+							</div>
+						</a>
+
+						<a class="nav-item nav-link" href="#p3" data-toggle="tab">
+							<div class="p-3 mb-2 bg-secondary text-dark">
+								Site web
+							</div>
+						</a>
+						<a class="nav-item nav-link" href="#p4" data-toggle="tab">
+							<div class="p-3 mb-2 bg-secondary text-dark">
+								Description en anglais
+							</div>
+						</a>
+						<a class="nav-item nav-link" href="#p5" data-toggle="tab">
+							<div class="p-3 mb-2 bg-secondary text-dark">
+								Enregistrement
+							</div>
+						</a>
+					</nav>
+				</h6>
+				<div class="tab-content mt-3">
+					<div class="tab-pane fade show active" id="p1">
+						{% include "article/_3_col_tab.html.twig" with {'var01' : 'Poids','var02': tarticle.pds,'var03':tarticle.pdsUnt } %}
+						{% include "article/_3_col_tab.html.twig" with {'var01' : 'Volume','var02': tarticle.vlm,'var03':tarticle.vlmUnt } %}
+						{% include "article/_3_col_tab.html.twig" with {'var01' : 'Capacité','var02': tarticle.cpc,'var03':tarticle.cpcUnt } %}
+					</div>
+					<div class="tab-pane" id="p2">
+						{% include "article/_2_col_tab.html.twig" with {'var01' : 'Rérérence','var02': tarticle.refAdx } %}
+						{% include "article/_2_col_tab.html.twig" with {'var01' : 'Libellé 1','var02': tarticle.lib01Adx } %}
+						{% include "article/_2_col_tab.html.twig" with {'var01' : 'Libellé 2','var02': tarticle.lib02Adx } %}
+						{% include "article/_2_col_tab.html.twig" with {'var01' : 'Transmis le','var02': tarticle.datAdxIns|date('d-m-Y H:i:s') } %}
+					</div>
+					<div class="tab-pane" id="p3">
+						{% include "article/_2_col_tab.html.twig" with {'var01' : 'Transmis le','var02': tarticle.datSitWeb01Ins } %}
+					</div>
+					<div class="tab-pane" id="p4">
+						{% include "article/_2_col_tab.html.twig" with {'var01' : 'Description courte','var02': tarticle.libCrtEn } %}
+						{% include "article/_2_col_tab.html.twig" with {'var01' : 'Description longue','var02': tarticle.libLngEn } %}
+					</div>
+					<div class="tab-pane" id="p5">
+						{% include "article/_4_col_tab.html.twig" with {'var01' : 'Créé le','var02': tarticle.datIns|date('d-m-Y H:i:s'), 'var03' : 'par', 'var04': tarticle.usrIns.nom } %}
+						{% if(tarticle.usrUpd is not null) %}
+							{% include "article/_4_col_tab.html.twig" with {'var01' : 'Modifié le','var02': tarticle.datUpd|date('d-m-Y H:i:s'), 'var03' : 'par', 'var04': tarticle.usrUpd.nom } %}
+						{% endif %}
+					</div>
+					<div class="tab-pane" id="p6">
+						{% include 'article/_tab_artfou.html.twig' with {tartfou:tartfou} %}
+					</div>
+				</div>
+			</div>
+		</h5>
+	</div>
+   <div id="formulaire" style="display: none; top:0;
+        bottom:0;
+        right:0;
+        left:0;
+        width:50%;
+        height:25%;
+        margin:auto;
+        position:fixed;
+        border:solid 1px #fff;
+        background-color:#00BFFF; ;">
+     
+         {{ form_start(form) }}
+            {{ form_widget(form) }}
+              {{ form_end(form) }}
+
+             
+    
+    </div>
+
+        <script>
+        function toggleForm(){
+            // on réccupère l'élément form.
+            var formulaire = document.getElementById('formulaire');
+        
+            // Condition pour afficher/cacher le formulaire en fonction de son état
+            if(formulaire.style.display == 'block'){
+                formulaire.style.display = 'none';
+            }else{
+                formulaire.style.display = 'block';
+            }
+        }
+    </script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+
+ var thumb1 =  document.getElementById("img1");
+var thumb1Src =  document.getElementById("img1").src;
+var thumb2 =  document.getElementById("img2");
+var thumb2Src =  document.getElementById("img2").src;
+var thumb3 =  document.getElementById("img3");
+var thumb3Src =  document.getElementById("img3").src;
+var thumb4 =  document.getElementById("img4");
+var thumb4Src =  document.getElementById("img4").src;
+
+
+
+thumb1.addEventListener("click",function(){
+	document.getElementById("mainImg").src = thumb1Src
+})
+thumb2.addEventListener("click",function(){
+	document.getElementById("mainImg").src = thumb2Src
+})
+thumb3.addEventListener("click",function(){
+	document.getElementById("mainImg").src = thumb3Src
+})
+thumb4.addEventListener("click",function(){
+	document.getElementById("mainImg").src = thumb4Src
+})
+
+
+           
+</script>
+  
+{% endblock %}

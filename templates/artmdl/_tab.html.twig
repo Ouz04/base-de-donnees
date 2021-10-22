@@ -1,0 +1,23 @@
+<table class="table table-sm" data-toggle="table" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-pagination="true" data-id-field="cod" data-page-list="[50, 100, all]" data-show-export="true" data-click-to-select="true" data-response-handler="responseHandler">
+
+	<thead class="thead-light">
+		<tr>
+			<th>Code Article</th>
+			<th>Désignation</th>
+			<th>Modèle</th>
+		</tr>
+	</thead>
+	<tbody>
+
+
+		{% for artmdl in tartmdl %}
+			<tr>
+				<td>
+					<a href="{{path('artmdl_modif',{'id': artmdl.id })}}">{{artmdl.clrArt.cod}}</a>
+				</td>
+				<td>{{artmdl.clrArt.libCrtFr}}</td>
+				<td>{{artmdl.clrMdl.nom}}</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>

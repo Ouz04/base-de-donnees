@@ -1,0 +1,39 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	grille_tarifaire-organisation
+{% endblock %}
+{% block body %}
+<div class="breadcrumb d-flex justify-content-between">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item">
+			Grilles tarifaire
+		</li>
+		<li class="breadcrumb-item active"> {{tgritarett.clrCli.cod}} / {{tgritarett.cod}} / Article :
+			{% if totalSearch == total %}
+				{{total}}
+			{% else %}
+				{{totalSearch}}
+				/
+				{{total}}
+			{% endif %}
+		</li>
+	</ol>
+    {# <div>
+        {{ form_start(formTxMrg, {'attr': {'class': 'form-inline'}}) }}
+        {{ form_widget(formTxMrg) }}
+        <button type="submit" class="btn btn-primary">Exécuter tx marge</button>
+        {{ form_end(formTxMrg) }}
+    </div> #}
+</div>
+	
+	<div class="row">
+		<div class="col-md-2">
+			{% include 'shared/_filtreArt.html.twig' with { form: formSearch,allow_extra_fields:allow_extra_fields} %}</div>
+		<div class="col-md-10">
+			{% include 'gritarcol/_tabGtaCol.html.twig' with {tgritarpsts:tgritarpsts, form:form, tarfou:tartfou} %}
+		</div>
+	</div>
+
+
+{% endblock %}

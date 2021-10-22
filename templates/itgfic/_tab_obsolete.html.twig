@@ -1,0 +1,36 @@
+<table class="table table-sm">
+	fichier :
+	{{titgficett.nomFicLcl}}
+	<thead class="thead-light">
+		<tr>
+			<th>ligne</th>
+			<th>Enregistrement</th>
+			<th>nombre de colonne</th>
+			<th>statut</th>
+			<th>commentaire</th>
+			<th>Table alimentée</th>
+			<th>enr. concerné</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for pst in titgficpst %}
+			<tr>
+				<td>{{pst.num}}</td>
+				<td>{{pst.enr}}</td>
+				<td>{{pst.nbCol}}</td>
+				<td>{{pst.clrTypstt.dsg}}</td>
+				<td>{{pst.cmt}}</td>
+				<td>{{pst.tbc}}</td>
+				<td>
+					{% if pst.idc > '0' %}
+						<a href="{{path('artfou_modif',{'id': pst.idc,'codFct':'03' })}}">
+							<i class="fa fa-search"></i>
+						</a>
+					{% endif %}
+				</td>
+
+
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>

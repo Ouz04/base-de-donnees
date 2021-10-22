@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	organisation
+{% endblock %}
+{% block body %}
+	{% include "shared/_breadcrumb_01.html.twig" with {'var01' : 'Donnée de base','var02':'Organisation','var03':torganisation|length,'var10':'org_creat','var11':'ORG'} %}
+
+	<div class="row">
+		<div class="col-md-2">
+			{% include 'organisation/_filtreOrg.html.twig' with { form: form} %}</div>
+		<div class="col-md-10">
+			{% include "organisation/_tab.html.twig" with {'torganisation' : torganisation} %}
+		</div>
+	</div>
+
+{% endblock body %}

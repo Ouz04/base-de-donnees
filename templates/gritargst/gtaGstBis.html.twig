@@ -1,0 +1,37 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Gestion grille tarifaire
+{% endblock %}
+{% block body %}
+	<div class="container-fluid">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				Grille tarifaire
+			</li>
+			<li class="breadcrumb-item">
+				{{tgritarett.clrOrg.cod}}
+			</li>
+			<li class="breadcrumb-item">
+				{{tgritarett.cod}}
+			</li>
+
+		</ol>
+
+
+		<div class="row">
+
+
+			<div class="col-10">
+
+				{{ form_start(form2) }}
+				<h6>libelle</h6>
+				{{ form_row(form2.codArt) }}
+
+
+				{{form_end(form2)}}
+
+
+			</div>
+		</div>
+	</div>
+{% endblock %}

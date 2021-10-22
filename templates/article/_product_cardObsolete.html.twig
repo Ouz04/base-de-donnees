@@ -1,0 +1,19 @@
+<tr>
+	<td>{{p.cod}}</td>
+
+	{# class="card"> #}
+	{# <img src={{p.mainPicture}} class="img-fluid" alt="Image du produit"> #}
+
+	<td>{{ p.libCrtFr }}</td>
+	<td>
+		<span style="color:#ff0000;"><input type="checkbox" value="false" name="test"></span>
+		{# <a href="{{path('cart_add',{'id': p.id})}}" class="btn btn-success btn-sm">Ajouter</a> #}
+	</td>
+</tr>
+{# <div class="card-body">
+												<h4 class="card-title">{{p.cod}}
+												</h4>
+												<span class="badge badge-info">{{p.clrCtg.dsg}}</span>
+												<p class="card-text">{{p.libCrtFr}}</p>
+												{# <a href="{{ path('product_show',{'category_slug':p.ClrCtg.slug, 'slug': p.slug } ) }}" " class=" btn btn-primary btn-sm">Detail</a>
+																				<a href="{{path('cart_add',{'id': p.id})}}" class="btn btn-success btn-sm">Ajouter</a> #}{# </div> #}</div>

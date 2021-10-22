@@ -1,0 +1,48 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	organisation
+{% endblock %}
+{% block body %}
+
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item">
+			<a href="#">Grille tarifaire</a>
+		</li>
+		<li class="breadcrumb-item">
+			<a href="{{path('org_gst_bis') }}">Organisation</a>
+		</li>
+		<li class="breadcrumb-item active">Grilles tarifaires</li>
+	</ol>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Code Organisation</th>
+				<th>Date de début</th>
+				<th>Date de fin</th>
+				<th>nb article(s)</th>
+
+			</tr>
+		</thead>
+
+		<tbody>
+
+			{% for gtaett in tgritarett %}
+				<tr>
+					<td>
+						{{gtaett.clrOrg.cod}}
+					</td>
+					<td>{{gtaett.datDeb|date("d/m/Y")}}</td>
+					<td>{{gtaett.datFin|date("d/m/Y")}}</td>
+					<td>
+						<a href="{{path('gtaettpst_gst',{'id': gtaett.id })}}">{{gtaett.tgritarpsts.count}}</a>
+					</td>
+				</tr>
+
+			</tbody>
+		{% endfor %}
+	</tbody>
+</table>
+
+<a href="{{ path('gtaettorg_creat') }}" class="btn btn-success btn-sm">Ajouter</a>{% endblock %}

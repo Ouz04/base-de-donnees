@@ -1,0 +1,32 @@
+<table class="table table-sm" data-toggle="table" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-pagination="true" data-id-field="cod" data-page-list="[50, 100, all]" data-show-export="true">
+	<thead class="thead-light">
+		<tr>
+			<th></th>
+<th data-sortable="true">code</th>
+<th data-sortable="true">Nom</th>
+<th data-sortable="true" data-visible="false">Créé par</th>
+<th data-sortable="true">le</th>
+
+
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+
+
+		{% for cml in tcommercial%}
+			<tr>
+				<td>{% include "shared/_icon_edit_row.html.twig" with {'var01' : 'cml_modif','var02':cml.id} %}</td>
+				<td>
+
+					<a href="{{path('cml_modif',{'id': cml.id })}}">{{cml.cod}}</a>
+				</td>
+				<td>{{cml.nom}}</td>
+				<td>{{cml.usrIns.nom}}</td>
+				<td>{{cml.datIns|date("d/m/Y h:i")}}</td>
+				<td>{% include "shared/_icon_supp_row.html.twig" with {'var01' : 'cml_supp','var02':cml.id} %}</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% include 'shared/_icon_supp_row_js.html.twig' %}

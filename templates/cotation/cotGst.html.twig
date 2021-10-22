@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	cotation
+{% endblock %}
+{% block body %}
+
+	{% include "shared/_breadcrumb_01.html.twig" with {'var01' : 'Base article','var02':'Cotation','var03':tcotation|length,'var10':'cot_creat','var11':'COT'} %}
+
+
+	<div class="row">
+		<div class="col-md-2">
+			{% include 'cotation/_filtreCot.html.twig' with { form: form} %}</div>
+		<div class="col-md-10">
+			{% include "cotation/_tab.html.twig" with {'tcotation' : tcotation} %}
+		</div>
+	</div>
+
+
+{% endblock %}

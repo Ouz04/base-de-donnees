@@ -1,0 +1,110 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	grille_tarifaire-client
+{% endblock %}
+{% block body %}
+  <ol class="breadcrumb">
+		<li class="breadcrumb-item">
+			Grilles tarifaire
+		</li>
+		<li class="breadcrumb-item active">Article :
+			{{tgritarpsts|length}}
+		</li>
+	</ol>
+<table class="table table-sm" id="tableSectionDetails">
+ 	 
+			<thead class="thead-light">
+				<tr>
+					<th width="15%">Code</th>
+					<th width="25%">Désignation</th>
+                    <th width="15%">Code Article Client</th>
+                    <th width="5%">Fournisseur</th>
+                    <th width="5%">Conditionnement</th>				
+					<th width="10%">Prix d'achat</th>
+					<th width="5%">Marge</th>
+					<th width="15%">Prix de vente</th>
+					<th width="10%">Eco Taxe</th>
+                    <th width="10%">Taxe Sorecop</th>
+                    <th width="5%">BPU</th>
+                    <th width="5%">Devis</th>
+				</tr>
+			</thead>
+			<tbody>
+         
+                {{ form_start(form) }}
+               
+                    {# store the prototype on the data-prototype attribute #}
+                    <div class="col-sm-8 col-sm-offset-2" id="exp_list" 
+                        {# data-prototype="{{ form_widget(form.tgritarpsts.vars.prototype)|e('html_attr') }}" #}
+                        {% for tag in form.tgritarpsts %}
+                            <tr> 
+                                <td>{{ form_row(tag.codArt) }}</td>
+                                <td>{{ form_row(tag.libArt) }}</td>
+                                <td>{{ form_row(tag.codArtCli) }}</td>
+                                <td>
+                                    {% for artfou in tartfou %}
+                                            {{ (artfou.clrFou.cod) }}
+                                    {% endfor %}
+                                </td>
+                                 <td>
+                                    {% for artfou in tartfou %}
+                                           {{ (artfou.qteCnd) }}
+                                    {% endfor %}
+                                </td>
+                                       
+                                <td>
+                                    {% set prxAch = 0 %}
+
+                                    {% if tag.vars.value.prxAch != 0 %}
+                                        {% set prxAch = tag.vars.value.prxAch %}
+                                    {% else %}
+                                        {% for artfou in tartfou %}
+                                            {% if artfou.clrArt == tag.vars.value.clrArt %}
+                                                {% set prxAch = artfou.prxAch %}
+                                            {% endif %}
+                                       {% endfor %}
+                                    {% endif %}
+								  {{prxAch|number_format(2)}}
+                                </td>
+                                <td>{{ form_row(tag.txMrg) }}</td>
+                                <td>{{ form_row(tag.prxVte) }}</td>
+                                <td>{{ form_row(tag.prxTxe) }}</td>
+                                <td>{{ form_row(tag.prxTxs) }}</td>
+                                <td>{{ form_row(tag.xBpu) }}</td>
+                                <td>{{ form_row(tag.xDvs) }}</td>
+                                <td>{% include "shared/_icon_supp_row.html.twig" with {'var01' : 'gtapst_supp','var02':tag.vars.value.id } %}</td>
+                            </tr>
+                       
+                        {% endfor %}
+                   </div>
+                {{ form_end(form) }}
+    
+    </tbody>
+	
+</table>
+{% include 'shared/_icon_supp_row_js.html.twig' %}
+  <nav class="navigation">
+       <ul class="pagination">
+            {% for item in 1..((total / limit)|round(0,'ceil')) %}
+                <li>
+                    <a href="?page={{item}}"  class="btn btn-primary">{{item}}</a>
+                </li>
+            {% endfor %}
+	    </ul>
+ </nav>
+    
+
+
+
+{% endblock %}
+{% block javascripts %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery
+/1.11.1/jquery.min.js">
+</script>
+<script>
+
+</script>
+{% endblock %}
+
+

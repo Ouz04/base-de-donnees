@@ -1,0 +1,40 @@
+<table class="table table-sm">
+	<thead class="thead-light">
+		<tr>
+			<th></th>
+			<th>Code Organisation</th>
+			<th>Code grille tarifaire</th>
+			<th>Date de début</th>
+			<th>Date de fin</th>
+			<th>nb article(s)</th>
+			<th></th>
+			<th></th>
+		</tr>
+	</thead>
+
+	<tbody>
+		{% for gtaett in tgritarett %}
+			<tr>
+				<td>{% include "shared/_icon_edit_row.html.twig" with {'var01' : 'gtaettcli_modif','var02':gtaett.id} %}</td>
+				<td>
+					{{gtaett.clrCli.cod}}
+				</td>
+				<td>{{gtaett.cod}}</td>
+				<td>{{gtaett.datDeb|date("d/m/Y")}}</td>
+				<td>{{gtaett.datFin|date("d/m/Y")}}</td>
+				<td>
+					<a href="{{path('gtapst_gst',{'id': gtaett.id })}}">{{gtaett.tgritarpsts.count}}</a>
+				</td>
+				<td>{% include "shared/_icon_supp_row.html.twig" with {'var01' : 'gtaett_supp','var02':gtaett.id } %}</td>
+				<td>
+					<a href="{{path('gritarcol_gst',{'idGta': gtaett.id })}}" class="btn btn-outline-primary btn-md">Sélectionner</a>
+
+
+				</td>
+
+			</tr>
+
+		{% endfor %}
+	</tbody>
+</table>
+{% include 'shared/_icon_supp_row_js.html.twig' %}

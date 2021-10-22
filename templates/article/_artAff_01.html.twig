@@ -1,0 +1,48 @@
+<div class="row">
+
+	<div class="col-4">
+		{% if (tarticle.ficImg2) %}
+                <p><img class="img-fluid" id="mainImg" src="{{ vich_uploader_asset(tarticle,'img2') |imagine_filter('reduc_01') }}" alt="image de {{ tarticle.cod }}" style="width=100%;height=auto"></p>
+        {% endif %} <br>
+        <div class="row">
+      
+         {% for image in tartImg %}
+         <p><img src="{{asset(image)}}" id="img{{loop.index}}" alt="" width="90" alt="image de {{ tarticle.cod }}" ></p>
+       
+         {% endfor %}
+        	{# {% if (tarticle.timages) %}
+         {% for image in tarticle.timages %}
+                <p><img src="{{ asset('/images/upload/' ~image.name) }}" class="btn" name="up{{image.id}}"  id="img{{loop.index}}" alt="" width="90" alt="image de {{ tarticle.cod }}" ></p>
+        {% endfor %}
+           {% endif %} <br> #}
+        </div>
+	</div>
+ 
+    
+	<div class="col-8">
+		<h3>
+			{% include "article/_2_col.html.twig" with {'var01' : 'Article','var02': tarticle.cod } %}
+		</h3>
+		<hr>
+		<div class="row">
+			<div class="col-2">
+				<div class="text-primary">
+					<p>Description</p>
+				</div>
+			</div>
+			<div class="col-6">
+				<P>{{ tarticle.libCrtFr }}</p>
+				<p>{{ tarticle.libLngFr }}</p>
+				<hr>
+			</div>
+		</div>
+		{# {% include "article/_2_col.html.twig" with {'var01' : 'Marque','var02': tarticle.clrMrqice.nom } %} #}
+		{% if tarticle.clrCtr %}
+			{% include "article/_4_col_tab.html.twig" with {'var01' : 'Constructeur','var02': tarticle.clrCtr.nom,'var03':'Réf.','var04':tarticle.refCtr } %}
+		{% else %}
+			{% include "article/_4_col_tab.html.twig" with {'var01' : 'Constructeur','var02': 'NA','var03':'Réf.','var04':tarticle.refCtr } %}
+		{% endif %}
+		{% include "article/_2_col.html.twig" with {'var01' : 'Lien fiche','var02': tarticle.lnkFchCtr } %}
+
+    </div>
+</div>

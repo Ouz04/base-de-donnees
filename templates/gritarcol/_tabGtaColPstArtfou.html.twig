@@ -1,0 +1,46 @@
+{% set compteur = 0 %}
+{% for artfou in tartfou %}
+    {% set compteur=compteur + 1 %}
+    {% set v_name = artfou.clrArt.id ~ '_' ~ compteur %}
+    {% set v_id = v_name %}
+    {% if tag.vars.data.codArt == artfou.clrArt.cod %}
+        <tr  class="table table-border" style="border-spacing: 0px 10px;">
+
+            <td></td>
+            <td></td>
+            <td class="text-info">{{artfou.clrFou.cod}}</td>
+            <td class="text-info">
+                {% if artfou.clrCot != null %}
+                    {{artfou.clrCot.cod}}
+                {% endif %}
+            </td>
+            <td class="text-info">{{artfou.qteCnd}}</td>
+            <td class="text-info">{{artfou.qteStk}}</td>
+            <td class="text-info">{{artfou.prxAch|number_format(2, '.', ',')}}</td>
+            {% set txMrg=0 %}
+        
+            {% if tag.vars.data.prxVte > 0 %}
+                {% if artfou.prxAch > 0 %}
+                    {% set txMrg = (( tag.vars.data.prxVte - artfou.prxAch ) / artfou.prxAch) * 100 %}
+                {% endif %}
+            {% endif %}
+            <td class="text-info">{{txMrg|number_format(2, '.', ',')}}</td>
+            <td>
+                {% set vBtn='Ajouter' %}
+                {% if tag.vars.data.clrArtfou == artfou %}
+                    {% set vBtn='Supprimer' %}
+                {% endif %}
+                {% if vBtn=='Ajouter' %}
+                    <a href="{{path('gta_artfou_sel',{'id':artfou.id})}}" class="js-status">
+                        <button class="btn btn-secondary btn-sm"   name = {{v_name}} id = {{v_id }}>_</button>
+                    </a>
+                {% else %}
+                    <a href="{{path('gta_artfou_dsel',{'id':artfou.id})}}" class="js-status">
+                        <button class="btn btn-primary btn-sm"  name = {{v_name}} id={{v_id}}>X</button>
+                    </a>
+                {% endif %}
+            </td>
+        
+        </tr>
+    {% endif %}
+{% endfor %}    

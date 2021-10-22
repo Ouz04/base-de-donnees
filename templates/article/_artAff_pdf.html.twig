@@ -1,0 +1,62 @@
+
+{% if tarticle.img %}
+
+	<p><img class="img-fluid" src="{{ vich_uploader_asset(tarticle,'img2') |imagine_filter('reduc_01') }}" alt="image de {{ tarticle.cod }}" style="width=100%;height=auto"></p>
+{% endif %}
+
+<h3>
+	{% include "article/_2_col.html.twig" with {'var01' : 'Article','var02': tarticle.cod } %}
+</h3>
+<hr>
+
+<div class="text-primary">
+	<p>Description :
+		{{ tarticle.libCrtFr }}</p>
+</div>
+
+
+<p>
+	{{ tarticle.libLngFr }}
+</p>
+
+{% if chk1 =="1"  %}
+
+	<h3>
+		{% include "article/_3_col_tab.html.twig" with {'var01' : 'Poids','var02': tarticle.pds,'var03':tarticle.pdsUnt } %}
+		{% include "article/_3_col_tab.html.twig" with {'var01' : 'Volume','var02': tarticle.vlm,'var03':tarticle.vlmUnt } %}
+		{% include "article/_3_col_tab.html.twig" with {'var01' : 'Capacité','var02': tarticle.cpc,'var03':tarticle.cpcUnt } %}
+	</h3>
+{% endif %}
+{% if chk2 =="1"  %}
+	<h3>
+		{% include "article/_2_col_tab.html.twig" with {'var01' : 'Rérérence','var02': tarticle.refAdx } %}
+		{% include "article/_2_col_tab.html.twig" with {'var01' : 'Libellé 1','var02': tarticle.lib01Adx } %}
+		{% include "article/_2_col_tab.html.twig" with {'var01' : 'Libellé 2','var02': tarticle.lib02Adx } %}
+		{% include "article/_2_col_tab.html.twig" with {'var01' : 'Transmis le','var02': tarticle.datAdxIns|date('d-m-Y H:i:s') } %}
+	</h3>
+{% endif %}
+{% if chk3 =="1" %}
+	<h3>
+		{% include "article/_2_col_tab.html.twig" with {'var01' : 'Transmis le','var02': tarticle.datSitWeb01Ins } %}
+	</h3>
+{% endif %}
+{% if chk4 =="1" %}
+	<h3>
+		{% include "article/_2_col_tab.html.twig" with {'var01' : 'Description courte','var02': tarticle.libCrtEn } %}
+		{% include "article/_2_col_tab.html.twig" with {'var01' : 'Description longue','var02': tarticle.libLngEn } %}
+	</h3>
+{% endif %}
+{% if chk5 =="1" %}
+	<h3>
+		{% include "article/_4_col_tab.html.twig" with {'var01' : 'Créé le','var02': tarticle.datIns|date('d-m-Y H:i:s'), 'var03' : 'par', 'var04': tarticle.usrIns.nom } %}
+		{% if(tarticle.usrUpd is not null) %}
+			{% include "article/_4_col_tab.html.twig" with {'var01' : 'Modifié le','var02': tarticle.datUpd|date('d-m-Y H:i:s'), 'var03' : 'par', 'var04': tarticle.usrUpd.nom } %}
+		{% endif %}
+	</h3>
+{% endif %}
+{% dump chk6 %}
+{% if chk6 =="1" %}
+	<h3>
+		{% include 'article/_tab_artfou.html.twig' with {tartfou:tartfou} %}
+	</h3>
+{% endif %}

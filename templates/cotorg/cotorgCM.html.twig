@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Creation cotation-organisation
+{% endblock %}
+
+{% block body %}
+	{% include "shared/_breadcrumb_02_fiche.html.twig" with {'var01' : 'Cotation-organisation','var02':'Création','var10':'cotorg_gst'} %}
+
+	{{ form_start(formView)}}
+
+	{{ form_errors(formView)}}
+
+	{{ form_widget(formView)}}
+
+
+	{% include "shared/_submit_enregistrer.html.twig"%}
+
+	{{ form_end(formView)}}
+{% endblock %}

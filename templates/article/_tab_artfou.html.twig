@@ -1,0 +1,36 @@
+<table class="table table-sm">
+	<thead class="thead-light">
+		<tr>
+
+			<th>Fournisseur</th>
+			<th>Prix achat</th>
+			<th>prix public</th>
+			<th>Ecotaxe</th>
+			<th>Taxe sorecop</th>
+			<th>Conditionnement</th>
+			<th>Quantité minimum</th>
+			<th>Stock</th>
+			<th>date prix</th>
+
+		</tr>
+	</thead>
+
+	<body>
+		{% for artfou in tartfou %}
+			<tr>
+
+				<td>{{artfou.clrFou.rso}}
+				</td>
+				<td>{{artfou.prxAch|number_format(2)}}</td>
+				<td>{{artfou.prxPbl|number_format(2)}}</td>
+				<td>{{artfou.prxTxe|number_format(2)}}</td>
+				<td>{{artfou.prxTxs|number_format(2)}}</td>
+				<td>{{artfou.qteCnd}}</td>
+				<td>{{artfou.qteMin}}</td>
+				<td>{{artfou.qteStk}}</td>
+				<td>{{artfou.datPrx|date("d/m/Y h:m")}}</td>
+			</tr>
+		{% endfor %}
+	</body>
+
+</table>

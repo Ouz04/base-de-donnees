@@ -1,0 +1,52 @@
+<table class="table table-sm" data-toggle="table" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-pagination="true" data-id-field="cod" data-page-list="[50, 100, all]" data-show-export="true">
+	<thead class="thead-light">
+		<tr>
+			<th></th>
+			<th data-sortable="true">code article</th>
+			<th data-sortable="true">Fournisseur</th>
+			<th data-sortable="true">Code cotation</th>
+			<th data-sortable="true">Prix achat</th>
+			<th data-sortable="true">Ecotaxe</th>
+			<th data-sortable="true">Taxe Sorecop</th>
+			<th data-sortable="true">Devise</th>
+			<th data-sortable="true">Conditionnement</th>
+			<th data-sortable="true">Priorité</th>
+			<th data-sortable="true">Actif</th>
+			<th data-sortable="true">Date</th>
+
+		</tr>
+	</thead>
+	<tbody>
+
+
+		{% for artfou in tartfou%}
+			<tr>
+				<td>{% include "shared/_icon_edit_row_fct.html.twig" with {'var01' : 'artfou_modif','var02':artfou.id,'codFct':codFct} %}</td>
+				<td>
+					<a href="{{path('art_aff',{'id': artfou.clrArt.id })}}">{{artfou.clrArt.cod}}</a>
+
+
+				</td>
+				<td>{{ artfou.clrFou.rso}}</td>
+				<td>
+					{% if artfou.clrCot != null %}
+						<a href="{{path('cot_aff',{'id': artfou.clrCot.id })}}">{{ artfou.clrCot.cod}}</a>
+					{% endif %}
+				</td>
+				<td>{{artfou.prxAch|number_format(2)}}</td>
+				<td>{{artfou.prxTxe|number_format(2)}}</td>
+				<td>{{artfou.prxTxs|number_format(2)}}</td>
+				<td>{{artfou.dev}}</td>
+				<td>{{artfou.qteCnd}}</td>
+				<td>{{artfou.prt}}</td>
+				<td>
+					{% if artfou.xAct==1  %}
+						X
+					{% endif %}
+				</td>
+				<td>{{artfou.datPrx|date("d/m/Y")}}</td>
+
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>

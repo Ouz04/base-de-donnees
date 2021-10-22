@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	modification d'un article
+{% endblock %}
+
+{% block body %}
+	{% include "shared/_breadcrumb_02_fiche.html.twig" with {'var01' : 'Article','var02':'Modification','var10':'art_gst'} %}
+	{{ form_start(formView)}}
+
+	{{ form_errors(formView)}}
+
+
+	{{ form_widget(formView) }}
+	<button type="submit" class="btn btn-success">Enregistrer</button>
+	{{form_end(formView)}}
+{% endblock %}

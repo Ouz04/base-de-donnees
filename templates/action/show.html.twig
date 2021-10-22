@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion utilisateur
+{% endblock %}
+
+
+{% block body %}
+	{% for act in taction %}
+		<ul>
+
+			{# {{ dump( ctg.cod) }} #}
+			<li class="breadcrumb-item active">
+				<a href="{{ path(act.rte) }}">{{act.dsg}}</a>
+			</li>
+		</ul>
+	{% endfor %}
+{% endblock %}

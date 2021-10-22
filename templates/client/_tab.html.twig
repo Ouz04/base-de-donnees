@@ -1,0 +1,58 @@
+<table class="table table-sm" data-toggle="table" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-pagination="true" data-id-field="cod" data-page-list="[50, 100, all]" data-show-export="true" data-click-to-select="true" data-response-handler="responseHandler">
+	<thead class="thead-light">
+		<tr>
+
+			<th></th>
+			<th data-sortable="true">Code client</th>
+			<th data-sortable="true">Nom</th>
+			<th data-sortable="true">Cp</th>
+			<th data-sortable="true">Localité</th>
+			<th data-sortable="true">Commercial</th>
+
+			<th data-sortable="true">Actif</th>
+			<th data-sortable="true" data-visible="false">Créé par</th>
+			<th data-sortable="true">le</th>
+
+
+			<th></th>
+		</tr>
+	</thead>
+
+	<tbody>
+
+
+		{% for cli in tclient %}
+			<tr>
+				<td>
+					<a href="{{path('cli_modif',{'id': cli.id })}}">
+						<i class="fas fa-pencil-alt"></i>
+					</a>
+				</td>
+				<td>
+					{{cli.cod}}
+				</td>
+				<td>{{cli.nom}}</td>
+				<td>{{cli.cp}}</td>
+				<td>{{cli.lclt}}</td>
+				<td>{{cli.clrCml.cod}}</td>
+				<td>
+					{% if cli.xAct == 1 %}
+						X
+					{% endif %}
+				</td>
+
+				<td>
+					{{cli.usrIns}}
+				</td>
+				<td>{{cli.datIns|date("d/m/Y")}}</td>
+				<td>
+
+					<a href="{{path('cli_supp',{'id': cli.id })}}" onclick="Supp(this.href); return(false);">
+						<i class="fas fa-trash-alt"></i>
+					</a>
+				</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% include 'shared/_icon_supp_row_js.html.twig' %}

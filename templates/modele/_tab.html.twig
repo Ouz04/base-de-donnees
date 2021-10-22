@@ -1,0 +1,51 @@
+<table class="table table-sm">
+	<thead class="thead-light">
+		<tr>
+			<th></th>
+			<th>code</th>
+			<th>Nom</th>
+			<th>Actif</th>
+			<th>Créé par</th>
+			<th>Le</th>
+			<th>Modifié par</th>
+			<th>Le</th>
+
+		</tr>
+	</thead>
+	<tbody>
+		{% for mdl in tmodele%}
+			<tr>
+				<td>
+					{% include "shared/_icon_edit_row.html.twig" with {'var01' : 'mdl_modif','var02':mdl.id } %}
+				</td>
+				<td>
+					{{mdl.cod}}
+				</td>
+				<td>{{mdl.nom}}</td>
+
+
+				{% if (mdl.xAct==1)%}
+					<td>X</td>
+				{% else %}
+					<td></td>
+				{% endif %}
+
+
+				<td>{{mdl.usrIns.nom}}</td>
+				<td>{{mdl.datIns|date("d/m/Y h:m")}}</td>
+				{% if mdl.usrUpd is not null %}
+					<td>{{mdl.usrUpd.nom}}</td>
+					<td>{{mdl.datUpd|date("d/m/Y h:m")}}</td>
+				{% else %}
+					<td></td>
+					<td></td>
+				{% endif %}
+				<td>
+					{% include "shared/_icon_supp_row.html.twig" with {'var01' : 'mdl_supp','var02':mdl.id } %}
+
+				</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% include 'shared/_icon_supp_row_js.html.twig' %}

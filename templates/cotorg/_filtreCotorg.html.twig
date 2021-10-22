@@ -1,0 +1,29 @@
+{{ form_start(form, {attr: {class: 'filter'}}) }}
+
+<div class="text-primary">
+	<button type="submit" class="btn btn-primary w-100">
+		Filtrer</button>
+
+	<h6>
+		Cotation
+	</h6>
+	{{ form_row(form.tcotation)}}
+	<h6>
+		Code cotation
+	</h6>
+	{{ form_row(form.cotCod)}}
+	<h6>
+		Organisation
+	</h6>
+	{{ form_row(form.torganisation)}}
+	<h6>
+		Code organisation
+	</h6>
+	{{ form_row(form.orgCod)}}
+	<h6>
+		Date de création
+	</h6>
+	{{ form_row(form.sigDat)}}
+	{{ form_row(form.datIns)}}
+</div>
+{{ form_end(form)}}

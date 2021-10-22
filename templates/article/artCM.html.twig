@@ -1,0 +1,171 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	{{titre1}}{{titre2}}
+{% endblock %}
+
+{% block body %}
+	{% include "shared/_breadcrumb_02_fiche.html.twig" with {'var01' : 'Article','var02':titre1,'var10':'art_gst'} %}
+{{ form_start(form)}}
+
+
+{{ form_errors(form)}}
+
+
+{{ form_widget(form)}}
+	{% include "shared/_submit_enregistrer.html.twig"%}
+{{ form_end(form)}}
+
+{# {{ form_start(formCtg)}}
+
+
+{{ form_errors(formCtg)}}
+
+
+{{ form_widget(formCtg)}}
+
+{# <h6>
+	Catégorie
+</h6>
+{{ form_row(form.tctgice)}}
+<h6>
+	Sous catégorie
+	{{ form_row(form.tsctgice)}}
+</h6> #}
+
+{# {{ form_end(formCtg)}} #}
+
+
+<script>
+{# $(document).on('change', '#clrCtgiceniv1, #clrCtgiceniv2, #clrCtgiceniv3', function () {
+
+
+  let $field = $(this)
+let $tctgiceField = $('#clrCtgiceniv1')
+
+  let $form = $field.closest('form')
+
+let target = '#' + $field.attr('id').replace('clrCtgiceniv3', 'clrCtgiceniv4').replace('clrCtgiceniv2', 'clrCtgiceniv3').replace('clrCtgiceniv1', 'clrCtgiceniv2')
+
+
+ console.log(target);
+  let data = {}
+  data[$tctgiceField.attr('name')] = $tctgiceField.val()
+  data[$field.attr('name')] = $field.val()
+
+  console.log($field.attr('name'));
+console.log(data);
+$.post($form.attr('action'), data).then(function (data) {
+
+
+
+	  
+
+	let $input = $(data).find(target)
+	
+    $(target).replaceWith($input) 
+console.log($input);
+
+}  )
+
+
+}) #}
+</script>
+</script>
+<script>
+$(document).on('change', '#clrCtgiceniv1, #clrCtgiceniv2,#clrCtgiceniv3', function () {
+  let $field = $(this)
+  let $tctgiceField = $('#clrCtgiceniv1')
+        var $xAct=$("#xAct"); var $datDebAct=$("#datDebAct"); var $datFinAct=$("#datFinAct");
+        var $clrMrqice=$("#clrMrqice"); var $clrCtgice=$("#clrCtgice")
+        var $cod= $("#cod"); var $libCrtFr= $("#libCrtFr"); var $libLngFr= $("#libLngFr"); var $libCrtEn= $("#libCrtEn");
+        var $libLngEn= $("#libLngEn"); var $lib01Adx= $("#lib01Adx"); var $codEan= $("#codEan");
+        var $pds= $("#pds"); var $pdsUnt= $("#pdsUnt"); var $vlm= $("#vlm"); var $vlmUnt= $("#vlmUnt");
+        var $cpc= $("#cpc"); var $cpcUnt= $("#cpcUnt"); var $refCtr= $("#refCtr"); var $lnkFchCtr= $("#lnkFchCtr");
+        var $refAdx= $("#refAdx"); var $xAdx= $("#xAdx"); var $datAdxIns= $("#datAdxIns"); 
+        var $xSitWeb01= $("#xSitWeb01"); var $datSitWeb01Ins= $("#datSitWeb01Ins"); var $img= $("#img");
+        var $img2= $("#img2");
+  let $form = $field.closest('form')
+
+  let target = '#' + $field.attr('id').replace('clrCtgiceniv3', 'clrCtgiceniv4').replace('clrCtgiceniv2', 'clrCtgiceniv3').replace('clrCtgiceniv1', 'clrCtgiceniv2')
+ console.log(target);
+  let data = {}
+  data[$tctgiceField.attr('name')] = $tctgiceField.val()
+  data[$field.attr('name')] = $field.val()
+  data[$xAct.attr('name')]= $xAct.val();
+            data[$datDebAct.attr('name')]= $datDebAct.val();
+            data[$datFinAct.attr('name')]= $datFinAct.val();
+            data[$clrMrqice.attr('name')]= $clrMrqice.val();
+            data[$clrCtgice.attr('name')]= $clrCtgice.val();
+            data[$cod.attr('name')]= $cod.val();
+            data[$libCrtFr.attr('name')]= $libCrtFr.val();
+            data[$libLngFr.attr('name')]= $libLngFr.val();
+            data[$libCrtEn.attr('name')]= $libCrtEn.val();
+            data[$libLngEn.attr('name')]= $libLngEn.val();
+            data[$lib01Adx.attr('name')]= $lib01Adx.val();
+            data[$codEan.attr('name')]= $codEan.val();
+            data[$pds.attr('name')]= $pds.val();
+            data[$pdsUnt.attr('name')]= $pdsUnt.val();
+            data[$vlm.attr('name')]= $vlm.val();
+            data[$vlmUnt.attr('name')]= $vlmUnt.val();
+            data[$cpc.attr('name')]= $cpc.val();
+            data[$cpcUnt.attr('name')]= $cpcUnt.val();
+            data[$refCtr.attr('name')]= $refCtr.val();
+            data[$lnkFchCtr.attr('name')]= $lnkFchCtr.val();
+            data[$refAdx.attr('name')]= $refAdx.val();
+            data[$xAdx.attr('name')]= $xAdx.val();
+            data[$datAdxIns.attr('name')]= $datAdxIns.val();
+            data[$xSitWeb01.attr('name')]= $xSitWeb01.val();
+            data[$datSitWeb01Ins.attr('name')]= $datSitWeb01Ins.val();
+            data[$img.attr('name')]= $img.val();
+            data[$img2.attr('name')]= $img2.val();
+
+        console.log($field.attr('name'));
+        console.log(data);
+        $.post($form.attr('action'), data).then(function (data) {
+            
+
+            let $input = $(data).find(target)
+            
+            $(target).replaceWith($input) 
+            console.log($input);
+
+            }
+        );
+})</script>
+
+{# <script>
+
+	console.log('lu1');
+var $sport = $('#tctgice');
+console.log($sport);
+// When sport gets selected ...
+$sport.change(function () { // ... retrieve the corresponding form.
+console.log('lu3');
+var $form = $(this).closest('form');
+console.log($form);
+console.log('lu4');
+
+// Simulate form data, but only include the selected sport value.
+var data = {};
+data[$sport.attr('name')] = $sport.val();
+
+// Submit data via AJAX to the form's action path.
+$.ajax({
+url: $form.attr('action'),
+type: $form.attr('method'),
+data: data,
+success: function (html) { // Replace current position field ...
+$('#tsctgice').replaceWith(
+// ... with the returned one from the AJAX response.
+$(html).find('#tsctgice')
+);
+
+// Position field now displays the appropriate positions.
+}
+});
+});
+</script> #}
+
+
+{% endblock %}

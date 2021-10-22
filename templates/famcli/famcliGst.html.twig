@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	famille client
+{% endblock %}
+{% block body %}
+	{% include "shared/_breadcrumb_01.html.twig" with {'var01' : 'Donnée de base','var02':'Famille client','var03':tfamcli|length,'var10':'cotfamcli_creat','var11':'Famille client'} %}
+	<div class="row">
+		<div class="col-md-12">
+			{% include "famcli/_tab.html.twig" with {'tfamcli' : tfamcli} %}
+		</div>
+	</div>
+
+{% endblock %}
+

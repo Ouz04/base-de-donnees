@@ -1,0 +1,49 @@
+<table class="table table-sm" data-toggle="table" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-pagination="true" data-id-field="cod" data-page-list="[50, 100, all]" data-show-export="true" data-click-to-select="true" data-response-handler="responseHandler">
+	<thead class="thead-light">
+		<tr>
+
+			<th></th>
+			<th data-sortable="true">Code Service entreprise</th>
+			<th data-sortable="true">Désignation</th>
+
+			
+			<th data-sortable="true" data-visible="false">Créé par</th>
+			<th data-sortable="true">Créé le</th>
+
+
+			<th></th>
+		</tr>
+	</thead>
+
+	<tbody>
+
+
+		{% for famcli in tsoc %}
+			<tr>
+				<td>
+					<a href="{{path('service_modif',{'id': famcli.id })}}">
+						<i class="fas fa-pencil-alt"></i>
+					</a>
+				</td>
+				<td>
+					{{famcli.cod}}
+				</td>
+				<td>{{famcli.dsg}}</td>
+				
+
+				<td>
+					{{famcli.usrIns}}
+				</td>
+				<td>{{famcli.datIns|date("d/m/Y")}}</td>
+				<td>
+
+					<a href="{{path('service_supp',{'id': famcli.id })}}" onclick="Supp(this.href); return(false);">
+						<i class="fas fa-trash-alt"></i>
+					</a>
+				</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% include 'shared/_icon_supp_row_js.html.twig' %}
+

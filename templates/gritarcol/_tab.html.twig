@@ -1,0 +1,157 @@
+<table class="table table-sm" id="tableSectionDetails">
+ 	 
+    <thead class="thead-light">
+        <tr>
+            <th width="20%">Code</th>
+            <th width="40%">Désignation</th>
+            <th width="15%">Code Article Client</th>
+
+            {# <th width="5%">Marge</th> #}
+            <th width="15%">Prix vte</th>
+            <th width="10%">Eco Taxe</th>
+            <th width="10%">Taxe Sorecop</th>
+            <th width="5%">BPU</th>
+            <th width="5%">Devis</th>
+            <th></th>
+        </tr>
+        <tr >
+            <th></th>
+            <th></th>
+            <th width="5%" class="text-info">Fournisseur</th>
+            <th width="5%" class="text-info">Cotation</th>
+            <th width="5%" class="text-info">Condit.</th>	
+            <th width="5%" class="text-info">Stock</th>				
+            <th width="10%" class="text-info">Prix ach.</th>
+            <th width="10%" class="text-info">Marge</th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+         
+        {{ form_start(form) }}
+        
+            {# store the prototype on the data-prototype attribute #}
+            <div class="col-sm-8 col-sm-offset-2" id="exp_list" 
+                data-prototype="{{ form_widget(form.tgritarpsts.vars.prototype)|e('html_attr') }}"
+{# {% dump form.tgritarpsts %} #}
+                {% for tag in form.tgritarpsts %}
+           {# {% dump tag.vars.data.codArt %} #}
+                    <tr>
+
+                        <td>{{ form_row(tag.codArt) }}</td>
+                        <td>{{ form_row(tag.libArt) }}</td>
+                        <td>{{ form_row(tag.codArtCli) }}</td>
+
+
+                        {# <td>{{ form_row(tag.txMrg) }}</td> #}
+                        {# <td>{{ form_row(tag.txMrg) }}</td> #}
+                        <td>{{ form_row(tag.prxVte) }}</td>
+                        <td>{{ form_row(tag.prxTxe) }}</td>
+                        <td>{{ form_row(tag.prxTxs) }}</td>
+                        <td>{{ form_row(tag.xBpu) }}</td>
+                        <td>{{ form_row(tag.xDvs) }}</td>
+
+
+                    
+                        <td>{% include "shared/_icon_supp_row.html.twig" with {'var01' : 'gritarcol_supp','var02':tag.vars.value.id } %}</td>
+                         <div class ="psp3">
+                            {% for artfou in tartfou %}
+                                {% if tag.vars.data.codArt == artfou.clrArt.cod %}
+                                    <tr  class="table table-border" style="border-spacing: 0px 10px;">
+                                
+                                    <td></td>
+                                    <td></td>
+                                    <td class="text-info">{{artfou.clrFou.cod}}</td>
+                                    <td class="text-info">
+                                        {% if artfou.clrCot != null %}
+                                            {{artfou.clrCot.cod}}
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-info">{{artfou.qteCnd}}</td>
+                                    <td class="text-info">{{artfou.qteStk}}</td>
+                                    <td class="text-info">{{artfou.prxAch|number_format(2, '.', ',')}}</td>
+                                    {% set txMrg=0 %}
+                                
+                                    {% if tag.vars.data.prxVte > 0 %}
+                                        {% if artfou.prxAch > 0 %}
+                                            {% set txMrg = (( tag.vars.data.prxVte - artfou.prxAch ) / artfou.prxAch) * 100 %}
+                                        {% endif %}
+                                    {% endif %}
+                                    <td class="text-info">{{txMrg|number_format(2, '.', ',')}}</td>
+                                    <td>
+                                        {% set vBtn='Ajouter' %}
+                                        {% if tag.vars.data.clrArtfou == artfou %}
+                                            {% set vBtn='Supprimer' %}
+                                        {% endif %}
+                                        {% if vBtn=='Ajouter' %}
+                                            <a href="{{path('gta_artfou_sel',{'id':artfou.id})}}" class="js-status">
+                                                <button class="btn btn-primary btn-sm">Ajouter</button>
+                                            </a>
+                                        {% else %}
+                                            <a href="{{path('gta_artfou_dsel',{'id':artfou.id})}}" class="js-status">
+                                                <button class="btn btn-secondary btn-sm">Supprimer</button>
+                                            </a>
+                                        {% endif %}
+                                    </td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </tr>
+
+                {% endfor %}
+            </div>
+        {{ form_end(form) }}
+    
+    </tbody>
+	
+</table>
+{% include 'shared/_icon_supp_row_js.html.twig' %}
+<div class="d-flex justify-content-center">
+{{knp_pagination_render(tgritarpsts, '/pagination.html.twig')}}
+</div>
+  {# <nav class="navigation">
+       <ul class="pagination">
+            {% for item in 1..((totalSearch / limit)|round(0,'ceil')) %}
+                <li>
+                    <a href="?page={{item}}"  class="btn btn-primary">{{item}}</a>
+                </li>
+            {% endfor %}
+	    </ul>
+ </nav> #}
+ 	<script>
+
+		function onClickBtnAjt(event) {
+event.preventDefault();
+const url = this.href;
+const btn = this.querySelector('button');
+console.log(btn);
+axios.get(url).then(function (response) {
+if (btn.classList.contains('btn-primary')) {
+btn.classList.replace('btn-primary', 'btn-secondary');
+
+btn.firstChild.data = "Supprimer";
+} else {
+btn.classList.replace('btn-secondary', 'btn-primary');
+btn.firstChild.data = "Ajouter";
+}
+
+
+console.log('lu5');
+
+
+console.log(response);
+}).catch(function (error) {
+if (error.response.status === 403) {
+window.alert("Erreur");
+}
+});
+}
+
+console.log('lu2');
+document.querySelectorAll('a.js-status').forEach(function (link) {
+console.log('lu3');
+link.addEventListener('click', onClickBtnAjt);
+})
+	</script>

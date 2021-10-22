@@ -1,0 +1,34 @@
+<table class="table table-sm" data-toggle="table" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-pagination="true" data-id-field="cod" data-page-list="[10, 25, all]" data-show-export="true">
+	<thead class="thead-light">
+		<tr>
+			<th></th>
+			<th data-sortable="true">Utilisateur</th>
+			<th data-sortable="true">Commercial</th>
+			<th data-sortable="true">Date de début</th>
+			<th data-sortable="true">Date de fin</th>
+			<th data-sortable="true">Créé par</th>
+			<th data-sortable="true">le</th>
+			<th></th>
+
+		</tr>
+	</thead>
+	<tbody>
+		{% for usrcml in tusrcml %}
+			<tr>
+				<td>
+					{% include "shared/_icon_edit_row.html.twig" with {'var01' : 'usrcml_modif','var02':usrcml.id } %}
+				</td>
+				<td>
+					{{usrcml.clrUsr.email}}
+				</td>
+				<td>{{usrcml.clrCml.cod}}</td>
+				<td>{{usrcml.datDeb|date("d/m/Y")}}</td>
+				<td>{{usrcml.datFin|date("d/m/Y")}}</td>
+				<td>{{usrcml.usrIns.nom}}</td>
+				<td>{{usrcml.datIns|date("d/m/Y h:m")}}</td>
+				<td>{% include "shared/_icon_supp_row.html.twig" with {'var01' : 'usrcml_supp','var02':usrcml.id } %}</td>
+			</tr>
+
+
+		{% endfor %}
+	</tbody>

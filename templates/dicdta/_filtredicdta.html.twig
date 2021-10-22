@@ -1,0 +1,22 @@
+
+{{ form_start(form, {attr: {class: 'filter'}}) }}
+
+<div class="text-primary">
+	{{ form_start(form) }}
+	<button type="submit" class="btn btn-primary w-100">
+		Filtrer</button>
+	<h6>
+		Code ( * -> totalité)
+	</h6>
+	{{ form_row(form.cliCod)}}
+	<h6>
+		Nom
+	</h6>
+	{{ form_row(form.cliNom)}}
+
+	{% include 'shared/_search_dat_creat.html.twig' with { form: form} %}
+
+
+</div>
+
+{{ form_end(form)}}

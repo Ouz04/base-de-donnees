@@ -1,0 +1,73 @@
+<div>
+	<table class="table table-sm">
+		<thead class="thead-light">
+			<tr>
+				<th width="10%" data-sortable="true">Code</th>
+				<th width="30%" data-sortable="true">Désignation</th>
+				<th width="20%" data-sortable="true">Catégorie</th>
+				<th width="20%" data-sortable="true">Sous catégorie</th>
+				{# <th>marque</th> #}
+				{% if tgritarett !=null %}
+				<th width="10%">Présent dans grille tarifaire</th>
+				{% endif %}
+
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr>
+				{% include 'catalogue/_tabCtlBtnSlc.html.twig' with {'vPath':'gta_art_ajt_mlt','vIdBtn':'select'} %}
+			</tr>
+			<tr>
+				{% include 'catalogue/_tabCtlBtnDSlc.html.twig' with {'vPath':'gta_art_sup_mlt','vIdBtn':'deselect'} %}
+			</tr>
+
+			{% for art in tarticle %}
+				<tr>
+					<td>
+						<a href="{{path('art_aff',{'id': art.id })}}">{{art.cod}}</a>
+					</td>
+					<td>{{art.libCrtFr}}</td>
+					{% if art.clrCtgice is not null %}
+						<td>{{art.clrCtgice.clrNiv1.dsg}}</td>
+						<td>{{art.clrCtgice.clrNiv2.dsg}}</td>
+					{% else %}
+						<td></td>
+						<td></td>
+					{% endif %}
+
+					{% set vBtn='Ajouter' %}
+					{% if art.chpTrv == 'OK' %}
+						{% set vBtn='Supprimer' %}
+					{% endif %}
+
+					<td>
+
+						{% if is_granted('ROLE_CML') and tgritarett !=null %}
+							
+								
+							<a href="{{path('gta_art_maj',{'id':art.id})}}" class="js-status">
+								{% if vBtn=='Ajouter' %}
+									<button class="btn btn-secondary btn-sm color-D3D3D3"  name="btn{{ art.id}}" value="btn"{{ art.id}}>_</button>
+								{% else %}
+									<button class="btn btn-primary btn-sm" name="btn{{ art.id}}" value="btn"{{ art.id}}>X</button>
+								{% endif %}
+								
+							</a>
+								
+
+						{% endif %}
+					</td>
+				</tr>
+
+			{% endfor %}
+		</tbody>
+
+	</table>
+			
+</div>
+
+	<script src="{{asset('assets/js/ctl/maj.js')}}"></script>
+    <script src="{{asset('assets/js/ctl/supMlt.js')}}"></script>
+    <script src="{{asset('assets/js/ctl/ajtMlt.js')}}"></script>
+ 

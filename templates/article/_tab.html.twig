@@ -1,0 +1,63 @@
+<table class="table table-sm" data-toggle="table" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-pagination="true" data-id-field="cod" data-page-list="[50, 100, all]" data-show-export="true" data-click-to-select="true" data-response-handler="responseHandler">
+	<thead class="thead-light">
+		<tr>
+			<th></th>
+			<th data-sortable="true">Code</th>
+			<th data-sortable="true">Désignation</th>
+			<th data-sortable="true">Catégorie</th>
+			<th data-sortable="true">Sous catégorie</th>
+			<th data-sortable="true">marque</th>
+			<th data-sortable="true">photo</th>
+			<th data-sortable="true">actif</th>
+		</tr>
+	</thead>
+	<tbody>
+
+
+		{% for art in tarticle %}
+			<tr>
+				<td>
+
+					<a href="{{path('art_modif',{'id': art.id })}}">
+						<i class="fas fa-pencil-alt"></i>
+					</a>
+
+				</td>
+
+				<td>
+					<a href={{path('art_aff',{'id': art.id } )}}>
+						{{art.cod}}
+					</a>
+				</td>
+				<td>{{art.libCrtFr}}</td>
+				{% if art.clrCtgice is not null %}
+					<td>{{art.clrCtgice.clrNiv1.dsg}}</td>
+<td>
+	{% if art.clrCtgice.clrNiv2 is not null %}
+		{{art.clrCtgice.clrNiv2.dsg}}</td>
+{% endif %}
+
+
+				{% else %}
+					<td></td>
+					<td></td>
+				{% endif %}
+				<td>
+					{% if art.clrMrqice is not null %}
+						{{art.clrMrqice.nom}}
+					{% endif %}
+				</td>
+				<td>
+					{% if (art.ficImg2) %}
+						<img class="img-fluid" src="{{ vich_uploader_asset(art,'img2') |imagine_filter('reduc_02') }}" alt="image de {{ art.cod }}" style="width=100%;height=auto">
+					{% endif %}
+				</td>
+				<td>
+					{% if (art.xAct==1)%}
+						X
+					{% endif %}
+				</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>

@@ -1,0 +1,29 @@
+{{ form_start(form, {attr: {class: 'filter'}}) }}
+{# <div class="p-3 mb-2 bg-primary text-white"> #}
+<div class="text-primary">
+	<h6>
+		Code article
+	</h6>
+	{{ form_row(form.codArt)}}
+
+	<h6>
+		Désignation
+	</h6>
+	{{ form_row(form.lib)}}
+	{# <h5>Catégorie</h5> #}
+	{# {{ form_row(form.tcategorie)}} #}
+		<h6>
+	Catégorie
+	</h6>
+	{{ form_row(form.tctgice)}}
+		<h6>
+	Sous catégorie
+	</h6>
+	{{ form_row(form.tsctgice)}}
+		<h6>
+	Marque
+	</h6>
+{{ form_row(form.tmrqice)}}
+</div>
+	<button type="submit" class="btn btn-primary w-100"> Filtrer</button>
+{{ form_end(form)}}

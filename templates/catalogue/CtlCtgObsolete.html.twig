@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Catégories
+{% endblock %}
+{% block body %}
+
+
+{% for ctg in tcategorie %}
+	<ul>
+
+		{# {{ dump( ctg.cod) }} #}
+		<li class="breadcrumb-item active">
+			<a href="{{ path('ctl_ctg_art',{'id': ctg.id} ) }}">{{ctg.dsg}}
+
+			</a>
+		</li>
+
+	</li>
+</ul>{% endfor %}{% endblock %}

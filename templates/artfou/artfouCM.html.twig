@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Creation article-fournisseur
+{% endblock %}
+
+{% block body %}
+	{% include "shared/_breadcrumb_02_fiche.html.twig" with {'var01' : 'Article-fournisseur','var02':'Création','var10':'artfou_gst'} %}
+	{{ form_start(formView)}}
+	{{ form_errors(formView)}}
+	{{ form_widget(formView)}}
+	{% if codFct=='02' %}
+		{% include "shared/_submit_enregistrer.html.twig"%}
+
+	{% endif %}
+	{{ form_end(formView)}}
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	commerical
+{% endblock %}
+{% block body %}
+{% include "shared/_breadcrumb_01.html.twig" with {'var01' : 'Base article','var02':'Catégorie','var03':tcategorie|length,'var10':'ctg_creat'} %}
+{# <h1>Gestion commercial</h1> #}
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>code</th>
+			<th>Libellé</th>
+			<th>Active</th>
+		</tr>
+	</thead>
+	<tbody>
+
+
+		{% for ctg in tcategorie %}
+			<tr>
+				<td>
+					<a href="{{path('ctg_modif',{'id': ctg.id })}}">{{ctg.cod}}</a>
+				</td>
+				<td>{{ctg.dsg}}</td>
+
+				{% if ctg.xAct == 1 %}
+					<td>X</td>
+				{% else %}
+					<td></td>
+				{% endif %}
+
+			</tr>
+		</td>
+	</tbody>
+</tr>{% endfor %}</tbody></table>{% endblock %}

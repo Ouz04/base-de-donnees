@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Site web
+{% endblock %}
+{% block body %}
+	{% include "shared/_breadcrumb_01.html.twig" with {'var01' : 'Donnée de base','var02':'Site web','var03':tsoc|length,'var10':'sitweb_creat','var11':'Site web'} %}
+	<div class="row">
+		<div class="col-md-12">
+			{% include "sitweb/_tab.html.twig" with {'tsoc' : tsoc} %}
+		</div>
+	</div>
+
+
+{% endblock %}
+

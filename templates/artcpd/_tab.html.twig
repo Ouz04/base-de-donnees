@@ -1,0 +1,36 @@
+<table class="table table-sm" data-toggle="table" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-pagination="true" data-id-field="cod" data-page-list="[50, 100, all]" data-show-export="true">
+	<thead class="thead-light">
+		<tr>
+			<th></th>
+			<th data-sortable="true">Code Article</th>
+			<th data-sortable="true">Désignation</th>
+			<th data-sortable="true">Type</th>
+			<th data-sortable="true">Code article lié</th>
+			<th data-sortable="true">Désignation</th>
+		</tr>
+	</thead>
+	<tbody>
+
+
+		{% for artcpd in tartcpd %}
+			<tr>
+				<td>
+
+					<a href="{{path('artcpd_modif',{'id': artcpd.id })}}">
+						<i class="fas fa-pencil-alt"></i>
+					</a>
+
+				</td>
+				<td>
+					{{artcpd.clrArtaas.cod}}
+				</td>
+				<td>{{artcpd.clrArtaas.libCrtFr}}</td>
+				<td>{{artcpd.clrTypcpd.dsg}}</td>
+				<td>
+					{{artcpd.clrArtase.cod}}
+				</td>
+				<td>{{artcpd.clrArtase.libCrtFr}}</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>

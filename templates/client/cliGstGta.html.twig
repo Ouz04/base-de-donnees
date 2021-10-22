@@ -1,0 +1,11 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	client - grille tarifaire
+{% endblock %}
+{% block body %}
+	{% include "shared/_breadcrumb_01.html.twig" with {'var01' : 'Grille tarifaire','var02':'Client','var03':tclient|length,'var10':'','var11':'GTA'} %}
+
+	{% include "client/_tabGta.html.twig" with {'tclient' : tclient} %}
+
+{% endblock body %}

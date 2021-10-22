@@ -1,0 +1,57 @@
+security:
+  encoders:
+    App\Entity\Tuser:
+      algorithm: auto
+
+  # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+  providers:
+    app_user_provider:
+      entity:
+        class: App\Entity\Tuser
+        property: email
+    # used to reload user from session & other features (e.g. switch_user)
+    # users_in_memory: { memory: null }
+  firewalls:
+    dev:
+      pattern: ^/(_(profiler|wdt)|css|images|js)/
+      security: false
+    main:
+      anonymous: true
+      lazy: true
+      provider: app_user_provider
+      guard:
+        authenticators:
+          - App\Security\LoginFormAuthenticator
+      #   form_login:
+      #     login_path: security_login
+      #     check_path: security_login
+      #     username_parameter: login[email]
+      #     password_parameter: login[password]
+
+      logout:
+        path: security_logout
+
+      # activate different ways to authenticate
+      # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+      # https://symfony.com/doc/current/security/impersonating_user.html
+      # switch_user: true
+
+  # Easy way to control access for large sections of your site
+  # Note: Only the *first* access control that matches will be used
+  access_control:
+    - { path: ^/admin, roles: ROLE_ADMIN }
+    - { path: ^/mkt, roles: ROLE_MKT }
+    - { path: ^/ach, roles: ROLE_ACH }
+    - { path: ^/cml, roles: ROLE_CML }
+    - { path: ^/cli, roles: ROLE_CML }
+    - { path: ^/exp, roles: ROLE_EXP }
+    - { path: ^/achmkt, roles: ROLE_MKT }
+    - { path: ^/achmkt, roles: ROLE_ACH }
+
+  role_hierarchy:
+    ROLE_MKT: ROLE_USER
+    ROLE_ACH: ROLE_USER
+    ROLE_CML: ROLE_USER
+    ROLE_ADMIN: ROLE_USER
+    ROLE_EXP: ROLE_USER

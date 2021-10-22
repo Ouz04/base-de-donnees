@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	artcot
+{% endblock %}
+{% block body %}
+	{% include "shared/_breadcrumb_01.html.twig" with {'var01' : 'Base article','var02':'Article-cotation','var03':tartcot|length,'var10':'artcot_creat','var11':'ARTCOT'} %}
+
+	<table class="table table-sm" data-toggle="table" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-pagination="true" data-id-field="cod" data-page-list="[50, 100, all]" data-show-export="true">
+		<thead class="thead-light">
+			<tr>
+				<th data-sortable="true">code article</th>
+				<th data-sortable="true">code cotation</th>
+				<th data-sortable="true">Prix achat</th>
+				<th data-sortable="true">Devise</th>
+				<th data-sortable="true">Conditionnement</th>
+				<th data-sortable="true">Quantité</th>
+				<th data-sortable="true">Date</th>
+			</tr>
+		</thead>
+
+		<tbody>
+
+			{% for artcot in tartcot%}
+				<tr>
+					<td>
+						<a href="{{path('artcot_modif',{'id': artcot.id })}}">{{artcot.clrArt.cod}}</a>
+					</td>
+					<td>{{artcot.clrcot.cod}}</td>
+					<td>{{artcot.prx}}</td>
+					<td>{{artcot.dev}}</td>
+					<td>{{artcot.qteCnd}}</td>
+					<td>{{artcot.qteArt}}</td>
+					<td>{{artcot.datIns|date("d/m/Y")}}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+{% endblock %}

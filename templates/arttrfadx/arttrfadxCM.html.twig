@@ -1,0 +1,139 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	{{titre1}}{{titre2}}
+{% endblock %}
+
+{% block body %}
+	{% include "shared/_breadcrumb_02_fiche.html.twig" with {'var01' : 'Article','var02':titre1,'var10':'art_gst'} %}
+	{{ form_start(formView)}}
+
+	{{ form_errors(formView)}}
+
+	<table border="0" cellpadding="10px" width="100%" boder="0" style="...">
+		<tr>
+			<div class="row">
+				<th width="20%">{{ form_row(formView.cod) }}</th>
+				<th width="80%">{{ form_row(formView.libCrtFr) }}</th>
+			</div>
+		</tr>
+
+	</table>
+	<table border="0" cellpadding="5px" width="100%" boder="0" style="...">
+		<tr>
+			<div class="row">
+				<th width="8%">{{ form_row(formView.ctgAdx) }}</th>
+				<th width="12%">{{ form_row(formView.refCtr) }}</th>
+				<th width="14%">{{ form_row(formView.codArtAncAdx) }}</th>
+				<th width="10%">{{ form_row(formView.codEan) }}</th>
+				<th width="8%">{{ form_row(formView.nrmAdx) }}</th>
+				<th width="10%">{{ form_row(formView.clrMrqIce) }}</th>
+				<th width="8%">{{ form_row(formView.pds)}}</th>
+				<th width="10%">{{ form_row(formView.pdsUnt)}}</th>
+				<th>{{ form_row(formView.prxBasAdx)}}</th>
+				<th>{{ form_row(formView.mrgMinAdx)}}</th>
+			</div>
+		</tr>
+
+	</table>
+	<table border="0" cellpadding="0px" width="100%" boder="0" style="...">
+		<tr>
+			<div class="row">
+				<th width="20%">{{ form_row(formView.lib01Adx) }}</th>
+				<th width="20%">{{ form_row(formView.lib02Adx) }}</th>
+				<th width="20%">{{ form_row(formView.lib03Adx) }}</th>
+				<th width="10%">{{ form_row(formView.cleRchAdx) }}</th>
+				<th>{{ form_row(formView.clrApcAdx) }}</th>
+				<th>{{ form_row(formView.tfamartadx01) }}</th>
+				<th>{{ form_row(formView.tfamartadx02) }}</th>
+				<th>{{ form_row(formView.tfamartadx03)}}</th>
+			</div>
+		</tr>
+
+	</table>
+	<table border="0" cellpadding="10px" width="100%" boder="0" style="...">
+		<tr>
+			<div class="row">
+				<th>{{ form_row(formView.tsitPrpAdx) }}</th>
+				<th>{{ form_row(formView.modGstAdx) }}</th>
+				<th>{{ form_row(formView.tcodctaadx) }}</th>
+				<th>{{ form_row(formView.ttaxadx) }}</th>
+			</div>
+		</tr>
+
+	</table>
+	<table border="0" cellpadding="10px" width="100%" boder="0" style="...">
+		<tr>
+			<div class="row">
+				<th>{{ form_row(formView.tsitStk01Adx) }}</th>
+				<th>{{ form_row(formView.tsitStk02Adx) }}</th>
+				<th>{{ form_row(formView.clrAhrAdx) }}</th>
+				<th>{{ form_row(formView.xGstEmpAdx) }}</th>
+				<th>{{ form_row(formView.modReaAdx) }}</th>
+				<th>{{ form_row(formView.typSugAdx) }}</th>
+				<th>{{ form_row(formView.seiReaAdx) }}</th>
+			</div>
+		</tr>
+
+	</table>
+
+
+	<div class="row">{# <div class="col">{{ form_row(form.sigDat)}}</div> #}
+		{# <div class="col">{{ form_row(form.datIns)}}</div> #}
+	</div>
+
+	<table border="0" cellpadding="0px" width="50%" boder="0" style="...">
+		<tr>
+			<th width="20%">Code fournisseur</th>
+			<th width="20%">Code article</th>
+			<th width="5%">Priorité</th>
+			<th width="20%">Code EAN</th>
+			<th width="20%">Contremarque</th>
+		</tr>
+		<tr>
+			<div class="row">
+				<th>{{ form_row(formView.tfou01) }}</th>
+				<th>{{ form_row(formView.codArt01) }}</th>
+				<th>{{ form_row(formView.prtFou01) }}</th>
+				<th>{{ form_row(formView.codEan01) }}</th>
+				<th>{{ form_row(formView.xCntmrq01) }}</th>
+			</div>
+		</tr>
+		<tr>
+			<div class="row">
+				<th>{{ form_row(formView.tfou02) }}</th>
+				<th>{{ form_row(formView.codArt02) }}</th>
+				<th>{{ form_row(formView.prtFou02) }}</th>
+				<th>{{ form_row(formView.codEan02) }}</th>
+				<th>{{ form_row(formView.xCntmrq02) }}</th>
+			</div>
+		</tr>
+		<tr>
+			<div class="row">
+				<th>
+					{% if formView.tfou03 != null %}
+						{{ form_row(formView.tfou03) }}
+					{% endif %}
+				</th>
+				<th>{{ form_row(formView.codArt03) }}</th>
+				<th>{{ form_row(formView.prtFou03) }}</th>
+				<th>{{ form_row(formView.codEan03) }}</th>
+				<th>{{ form_row(formView.xCntmrq03) }}</th>
+			</div>
+		</tr>
+
+
+		<tr>
+			<div class="row">
+				<th>{{ form_row(formView.tfou04) }}</th>
+				<th>{{ form_row(formView.codArt04) }}</th>
+				<th>{{ form_row(formView.prtFou04) }}</th>
+				<th>{{ form_row(formView.codEan04) }}</th>
+				<th>{{ form_row(formView.xCntmrq04) }}</th>
+			</div>
+		</tr>
+	</table>
+	{% include "shared/_submit_enregistrer.html.twig" %}
+	{{ form_end(formView)}}
+{% endblock %}
+

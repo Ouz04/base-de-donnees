@@ -1,0 +1,62 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	artcot
+{% endblock %}
+{% block body %}
+	<table class="table table-sm" data-toggle="table" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-pagination="true" data-id-field="cod" data-page-list="[50, 100, all]" data-show-export="true" data-click-to-select="true" data-response-handler="responseHandler">
+		<thead class="thead-light">
+			<tr>
+				<th></th>
+				<th data-sortable="true" data-field="cod">code article</th>
+				<th data-sortable="true" data-field="fou">Fournisseur</th>
+				<th data-sortable="true" data-field="prx">Prix achat</th>
+				<th>Ecotaxe</th>
+				<th>Taxe Sorecop</th>
+				<th>Devise</th>
+				<th>Conditionnement</th>
+				<th>Priorité</th>
+				<th>Actif</th>
+				<th>Date</th>
+
+			</tr>
+		</thead>
+		<tbody>
+
+
+			{% for artfou in tartfou %}
+				<tr>
+					<td></td>
+					<td>
+						<a href="{{path('art_aff',{'id': artfou.clrArt.id })}}">{{artfou.clrArt.cod}}</a>
+
+
+					</td>
+					<td>{{ artfou.clrFou.rso}}</td>
+					<td>{{artfou.prxAch|number_format(2)}}</td>
+					<td>{{artfou.prxTxe|number_format(2)}}</td>
+					<td>{{artfou.prxTxs|number_format(2)}}</td>
+					<td>{{artfou.dev}}</td>
+					<td>{{artfou.qteCnd}}</td>
+					<td>{{artfou.prt}}</td>
+					<td>
+						{% if artfou.xAct==1  %}
+							X
+						{% endif %}
+					</td>
+					<td>{{artfou.datPrx|date("d/m/Y")}}</td>
+
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+
+{# <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF/jspdf.min.js"></script> #}
+	{# <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script> #}
+	{# <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script> #}
+	{# <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/export/bootstrap-table-export.min.js"></script> #}
+	{# {% include "shared/_js01.html.twig"%} #}
+{% endblock %}

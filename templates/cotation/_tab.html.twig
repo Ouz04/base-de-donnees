@@ -1,0 +1,60 @@
+<table class="table table-sm" data-toggle="table" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-pagination="true" data-id-field="cod" data-page-list="[10, 100, all]" data-show-export="true">
+
+
+	<thead class="thead-light">
+		<tr>
+			<th></th>
+<th data-sortable="true">code</th>
+
+
+<th data-sortable="true">Désignation</th>
+
+<th data-sortable="true">Fournisseur</th>
+
+<th data-sortable="true">Date de début</th>
+
+<th data-sortable="true">Date de fin</th>
+
+<th data-sortable="true">Actif</th>
+
+<th data-sortable="true" data-visible="false">Créé par</th>
+
+<th data-sortable="true">Créé le</th>
+
+
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+
+
+		{% for cot in tcotation%}
+			<tr>
+
+				<td>{% include "shared/_icon_edit_row.html.twig" with {'var01' : 'cot_modif','var02':cot.id} %}</td>
+				<td>
+					{{cot.cod}}
+				</td>
+				<td>{{cot.dsg}}</td>
+				<td>
+					{% if cot.clrFou is not null%}
+						{{cot.clrFou.Rso}}
+					{% endif %}
+				</td>
+				<td>{{cot.datDeb|date("d/m/Y")}}</td>
+				<td>{{cot.datFin|date("d/m/Y")}}</td>
+				<td>
+					{% if (cot.xAct==1)%}
+						X
+					{% endif %}
+				</td>
+				<td>{{cot.usrIns.nom}}</td>
+				<td>{{cot.datIns|date("d/m/Y h:m")}}</td>
+				<td>{% include "shared/_icon_supp_row.html.twig" with {'var01' : 'cot_supp','var02':cot.id } %}</td>
+			</tr>
+{% endfor %}</tbody>
+
+</table>
+{% include 'shared/_icon_supp_row_js.html.twig' %}
+
+

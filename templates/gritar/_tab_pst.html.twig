@@ -1,0 +1,61 @@
+<table class="table table-sm">
+	<thead class="thead-light">
+		<tr>
+			<th></th>
+			<th width="10%">
+				Grille tarifaire</th>
+			<th width="10%">Code Article</th>
+			<th width="10%">Code art. client</th>
+			<th width="20%">Libellé</th>
+			<th width="5%">Prix d'achat</th>
+			<th width="5%">Prix de vente</th>
+			<th width="5%">Taxe eco</th>
+			<th width="5%">Tase sorecop</th>
+			<th width="15%">Code cotation</th>
+			<th width="10%">BPU</th>
+			<th></th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+
+
+		{% for gtapst in tgritarpst %}
+
+			<tr>
+				<td>	<a href="{{path('gtapst_modif',{'id': gtapst.id })}}">
+						<i class="fas fa-pencil-alt"></i>
+					</a></td>
+				<td>{{gtapst.clrgta.cod}}</td>
+				<td>
+					{% if gtapst.clrArt is not null %}
+						<a href="{{path('art_aff',{'id': gtapst.clrArt.id })}}">{{gtapst.clrArt.cod}}</a>
+					{% else %}
+						{{gtapst.codArt}}
+					{% endif %}
+				</td>
+				<td>{{gtapst.codArtCli}}</td>
+				<td>{{gtapst.libArt}}</td>
+				<td>{{gtapst.prxAch|number_format(2)}}</td>
+				<td>{{gtapst.prxVte|number_format(2)}}</td>
+				<td>{{gtapst.prxTxe|number_format(2)}}</td>
+				<td>{{gtapst.prxTxs|number_format(2)}}</td>
+				<td>
+					{% if gtapst.clrCotorg is not null %}
+						<a href="{{path('cot_aff',{'id': gtapst.clrCotorg.clrCot.id })}}">{{gtapst.codCot}}</a>
+					{% else %}
+						{{gtapst.codCot}}
+					{% endif %}
+				</td>
+				<td>
+					{% if gtapst.xBpu == 1 %}
+						X
+					{% endif %}
+				</td>
+				<td><td>{% include "shared/_icon_supp_row.html.twig" with {'var01' : 'gtapst_supp','var02':gtapst.id } %}</td></td>
+			</tr>
+
+		{% endfor %}
+	</tbody>
+</table>
+{% include 'shared/_icon_supp_row_js.html.twig' %}

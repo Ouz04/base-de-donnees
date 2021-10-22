@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Champs BDD
+{% endblock %}
+{% block body %}
+	{% include "shared/_breadcrumb_01.html.twig" with {'var01' : 'Donnée de base','var02':'Champs BDD','var03':tsoc|length,'var10':'dicdta_creat','var11':'Champs BDD'} %}
+	<div class="row">
+   
+		<div class="col-md-12">
+			{% include "dicdta/_tab.html.twig" with {'tsoc' : tsoc} %}
+		</div>
+	</div>
+
+{% endblock %}
+

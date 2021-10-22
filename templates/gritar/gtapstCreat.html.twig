@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Affectation article dans grille tarifaire
+{% endblock %}
+
+{% block body %}
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item">
+			<a href="{{ path('gtapst_gst',{'id': tgritarett.id }) }}">Article</a>
+		</li>
+
+		<li class="breadcrumb-item active">Ajout</li>
+	</ol>
+
+	{{ form_start(formView) }}
+	{{ form_widget(formView) }}
+	<button type="submit" class="btn btn-success">Enregistrer</button>
+	{{form_end(formView)}}
+{% endblock %}

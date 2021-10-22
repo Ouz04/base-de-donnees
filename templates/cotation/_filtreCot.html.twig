@@ -1,0 +1,25 @@
+{{ form_start(form, {attr: {class: 'filter'}}) }}
+
+<div class="text-primary">
+	<button type="submit" class="btn btn-primary w-100">
+		Filtrer</button>
+
+	<h6>
+		Cotation ( * -> totalité)
+	</h6>
+	{{ form_row(form.cotCod)}}
+	<h6>
+		Désignation
+	</h6>
+	{{ form_row(form.cotDsg)}}
+	<h6>
+		Fournisseur
+	</h6>
+	{{ form_row(form.tfournisseur)}}
+	<h6>
+		Créé depuis le
+	</h6>
+	{{ form_row(form.datIns)}}
+
+</div>
+{{ form_end(form)}}

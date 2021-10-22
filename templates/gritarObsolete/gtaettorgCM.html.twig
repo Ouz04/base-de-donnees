@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Creation grille tarifaire
+{% endblock %}
+
+{% block body %}
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item">
+			<a href="{{ path('gtaettcli_gst',{'id': idOrg }) }}">Grilles tarifaires</a>
+		</li>
+
+		<li class="breadcrumb-item active">Création</li>
+	</ol>
+
+	{{ form_start(formView) }}
+	{{ form_widget(formView) }}
+	<button type="submit" class="btn btn-success">Enregistrer</button>
+	{{form_end(formView)}}
+{% endblock %}

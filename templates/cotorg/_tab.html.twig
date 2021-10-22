@@ -1,0 +1,35 @@
+<table class="table table-sm">
+	<thead class="thead-light">
+		<tr>
+			<th></th>
+			<th>code cotation</th>
+			<th>code organisation</th>
+			<th>Date de début</th>
+			<th>Date de fin</th>
+			<th>Créé par</th>
+			<th>Le</th>
+			<th></th>
+		</tr>
+	</thead>
+
+	<tbody>
+
+		{% for cotorg in tcotorg%}
+			<tr>
+				<td>{% include "shared/_icon_edit_row.html.twig" with {'var01' : 'cotorg_modif','var02':cotorg.id} %}</td>
+
+				<td>{{cotorg.clrCot.cod}}</td>
+				<td>{{cotorg.clrOrg.cod}}</td>
+				<td>{{cotorg.datDeb|date("d/m/Y")}}</td>
+				<td>{{cotorg.datFin|date("d/m/Y")}}
+				</td>
+				<td>{{cotorg.usrIns.nom}}</td>
+				<td>{{cotorg.datIns|date("d/m/Y")}}</td>
+
+				<td>{% include "shared/_icon_supp_row.html.twig" with {'var01' : 'cotorg_supp','var02':cotorg.id } %}</td>
+
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% include 'shared/_icon_supp_row_js.html.twig' %}

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Transfert article
+{% endblock %}
+
+{% block body %}
+
+{% include "shared/_breadcrumb_01.html.twig" with {'var01' : 'Base article','var02':'Article en attente de transfert','var03':tarttrfadx|length,'var10':'arttrfadx_creat','var11':'Transfert article vers Adonix'} %}
+
+
+	<div class="row">
+		<div class="col-md-3">
+			{% include 'shared/_filtreArt.html.twig' with { form: form} %}
+			{% include 'arttrfadx/_tab02.html.twig' with {tarticle:tarticle} %}
+
+		</div>
+
+		<div class="col-md-9">
+			{% include 'arttrfadx/_tab01.html.twig' with {tarttrfadx:tarttrfadx} %}
+			<a href="{{ path('arttrfadx_trffic') }}">
+				<div class="col-md-12 text-center">
+					<button type="submit" class="btn btn-primary  btn-lg">Extraire au format Adonix</button>
+				</div>
+			</a>
+		</div>
+	</div>
+
+{% endblock %}
+

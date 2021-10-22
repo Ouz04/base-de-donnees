@@ -1,0 +1,8 @@
+ <?php
+
+   
+    if ($nb == $maxResult) {
+        $this->addFlash("warning", "Attention : tous les enregistrements issus de la recherche ne sont pas affichés. C'est limité à " . $maxResult);
+    } elseif ($reponse->getVar01() == 'KO') {
+        $this->addFlash("info", "Veuillez remplir le filtre pour la sélection ");
+    }

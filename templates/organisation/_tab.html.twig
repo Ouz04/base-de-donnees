@@ -1,0 +1,63 @@
+<table class="table table-sm" data-toggle="table" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-pagination="true" data-id-field="cod" data-page-list="[50, 100, all]" data-show-export="true">
+
+	<thead class="thead-light">
+		<tr>
+			<th></th>
+			<th>Code</th>
+			<th>Nom</th>
+			<th>Cp</th>
+			<th>Localité</th>
+			<th>Commercial</th>
+			<th>Client</th>
+			<th>Actif</th>
+			<th>Créé par</th>
+			<th>le</th>
+			<th></th>
+		</tr>
+	</thead>
+
+	<tbody>
+
+
+		{% for org in torganisation %}
+			<tr>
+				<td>
+					<a href="{{path('org_modif',{'id': org.id })}}">
+						<i class="fas fa-pencil-alt"></i>
+					</a>
+				</td>
+				<td>
+					{{org.cod}}
+				</td>
+				<td>{{org.nom}}</td>
+				<td>{{org.cp}}</td>
+				<td>{{org.lclt}}</td>
+				<td>{{org.clrCml.cod}}</td>
+				<td>
+					{% if org.clrCli !=null %}
+						{{org.clrCli.cod}}
+					{% endif %}
+				</td>
+				<td>
+					{% if org.xAct == 1 %}
+						X
+
+					{% endif %}
+				</td>
+				<td>{{org.usrIns}}</td>
+				<td>{{org.datIns|date("d/m/Y")}}</td>
+				<td>
+
+					<a href="{{path('org_supp',{'id': org.id })}}" onclick="Supp(this.href); return(false);">
+						<i class="fas fa-trash-alt"></i>
+					</a>
+				</td>
+
+
+			</tr>
+
+
+		{% endfor %}
+	</tbody>
+</table>
+{% include 'shared/_icon_supp_row_js.html.twig' %}

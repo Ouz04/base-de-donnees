@@ -1,0 +1,44 @@
+<table class="table table-sm" data-toggle="table" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-pagination="true" data-id-field="cod" data-page-list="[10, 25, all]" data-show-export="true">
+	<thead class="thead-light">
+		<tr>
+			<th></th>
+			<th data-sortable="true">Email</th>
+			<th data-sortable="true">Rôle</th>
+			<th data-sortable="true">Nom</th>
+<th data-sortable="true">Service</th>
+
+			<th data-sortable="true" data-visible="false" >Créé par</th>
+			<th data-sortable="true">le</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+
+
+		{% for usr in tuser %}
+			<tr>
+				<td>
+{% include "shared/_icon_edit_row.html.twig" with {'var01' : 'usr_modif','var02': usr.id } %}
+
+				</td>
+				<td>
+					{{usr.email}}
+				</td>
+				<td>
+					{% for role in usr.roles %}
+						{{role}}
+					{% endfor %}
+				</td>
+				<td>{{usr.nom}}</td>
+<td>{{usr.clrSrv.dsg}}</td>
+
+<td>{{usr.usrIns.nom}}</td>
+
+<td>{{usr.datIns|date("d/m/Y h:i")}}</td>
+
+				<td>{% include "shared/_icon_supp_row.html.twig" with {'var01' : 'usr_supp','var02':usr.id } %}</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+

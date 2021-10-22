@@ -1,0 +1,53 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	commerical
+{% endblock %}
+{% block body %}
+	{% include "shared/_breadcrumb_01.html.twig" with {'var01' : 'Donnée de base','var02':'Catégorie','var03':tctgicearb|length,'var10':'ctgicearb_creat','var11':'CTGICEARB'} %}
+	{# <h1>Gestion commercial</h1> #}
+
+
+	<div class="row">
+		<div class="col-md-2">
+			{% include 'ctgicearb/_filtreCtgicearb.html.twig' with { form: form} %}</div>
+		<div class="col-md-10">
+			{% include "ctgicearb/_tab.html.twig" with {'tctgicearb' : tctgicearb} %}
+           
+		</div>
+	</div>
+     
+<script>
+
+            console.log('lu1');
+        var $sport = $('#tctgice');
+        console.log($sport);
+        // When sport gets selected ...
+        $sport.change(function () { // ... retrieve the corresponding form.
+        console.log('lu3');
+        var $form = $(this).closest('form');
+        console.log($form);
+        console.log('lu4');
+
+        // Simulate form data, but only include the selected sport value.
+        var data = {};
+        data[$sport.attr('name')] = $sport.val();
+
+        // Submit data via AJAX to the form's action path.
+        $.ajax({
+        url: $form.attr('action'),
+        type: $form.attr('method'),
+        data: data,
+        success: function (html) { // Replace current position field ...
+        $('#tsctgice').replaceWith(
+        // ... with the returned one from the AJAX response.
+        $(html).find('#tsctgice')
+        );
+
+        // Position field now displays the appropriate positions.
+        }
+        });
+        });
+</script> 
+
+{% endblock body %}

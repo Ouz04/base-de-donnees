@@ -1,0 +1,56 @@
+{% extends "base-pdf.html.twig" %}
+
+{% block title %}Liste des données {{tgritarett.id}}{{ tgritarett.clrCli.nom }} {% endblock %}
+{% block body %}
+    <h1>Le client {{ tgritarett.clrCli.nom }}  </h1>
+    <div style="float: right; margin-top: 10px;">
+        <p>{{ tgritarett.clrCli.nom }}</p>
+        <p>{{ tgritarett.clrCli.adr }}</p> 
+        <p>{{ tgritarett.clrCli.cp }} - {{ tgritarett.clrCli.lclt }}</p> 
+        
+    </div><br><br><br>
+    <p> Date d'impression : {{ "now"|date("m/d/Y") }}</p>
+    <br>
+   
+   <br>
+    
+    <table class="table table-sm">
+        <thead class="thead-light">
+            <tr>
+             
+                <th width="15%">Code Article</th>
+                <th width="30%">Désignation</th>
+                <th width="15%">Code Article Client</th>
+                <th width="10%">Prix de Vente</th>
+                <th width="10%">Eco Taxe</th>
+                <th width="10%">Taxe serocop</th>
+                
+                
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for gtapst in tgritarpst %}
+                <tr>
+                   
+                    <td>
+                        {% if gtapst.clrArt is not null %}
+                            <a href="{{path('art_aff',{'id': gtapst.clrArt.id })}}">{{gtapst.clrArt.cod}}</a>
+                        {% else %}
+                            {{gtapst.codArt}}
+                        {% endif %}
+                    </td>
+                    <td>{{gtapst.libArt}}</td>
+                    <td>{{gtapst.codArtCli}}</td>
+                   <td>{{gtapst.prxVte|number_format(2)}}</td>
+                    <td>{{gtapst.prxTxe|number_format(2)}}</td>
+                    <td>{{gtapst.prxTxs|number_format(2)}}</td>
+                   
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+
+    
+{% endblock %}

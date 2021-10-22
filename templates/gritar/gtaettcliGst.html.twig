@@ -1,0 +1,10 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	grille_tarifaire-client
+{% endblock %}
+{% block body %}
+	{% include "shared/_breadcrumb_03.html.twig" with {'var01' : 'Grille tarifaire','var02':'client','var02p':'cli_gst_gta','var03':'Grilles tarifaires','var10':'gtaettcli_creat','var10id':idCli} %}
+	{% include "gritar/_tab_ettcli.html.twig" with {'tgritarett' : tgritarett} %}
+
+{% endblock %}

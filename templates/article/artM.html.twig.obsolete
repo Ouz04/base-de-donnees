@@ -1,0 +1,101 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	{{titre1}}{{titre2}}
+{% endblock %}
+
+{% block body %}
+	{% include "shared/_breadcrumb_02_fiche.html.twig" with {'var01' : 'Article','var02':titre1,'var10':'art_gst'} %}
+	{{ form_start(form)}}
+
+
+	{{ form_errors(form)}}
+
+
+	{{ form_widget(form)}}
+
+
+	{% include "shared/_submit_enregistrer.html.twig"%}
+	{{ form_end(form)}}
+
+
+	{{ form_start(formCtg)}}
+
+
+	{{ form_errors(formCtg)}}
+	{{ form_widget(formCtg)}}
+
+	{{ form_end(formCtg)}}
+
+	{# <h6>
+																Catégorie
+															</h6>
+															{{ form_row(form.tctgice)}}
+															<h6>
+																Sous catégorie
+																{{ form_row(form.tsctgice)}}
+															</h6> #}
+
+
+	<script>
+		$(document).on('change', '#tctgice, #tsctgice,#tssctgice', function () {
+let $field = $(this)
+let $tctgiceField = $('#tctgice')
+let $form = $field.closest('form')
+console.log($form);
+let target = '#' + $field.attr('id').replace('tssctgice', 'tsssctgice').replace('tsctgice', 'tssctgice').replace('tctgice', 'tsctgice')
+console.log(target);
+let data = {}
+data[$tctgiceField.attr('name')] = $tctgiceField.val()
+data[$field.attr('name')] = $field.val()
+
+console.log($field.attr('name'));
+console.log(data);
+$.post($form.attr('action'), data).then(function (data) {
+
+
+let $input = $(data).find(target)
+
+$(target).replaceWith($input)
+console.log($input);
+
+})
+})
+	</script>
+
+	{# <script>
+															
+																console.log('lu1');
+															var $sport = $('#tctgice');
+															console.log($sport);
+															// When sport gets selected ...
+															$sport.change(function () { // ... retrieve the corresponding form.
+															console.log('lu3');
+															var $form = $(this).closest('form');
+															console.log($form);
+															console.log('lu4');
+															
+															// Simulate form data, but only include the selected sport value.
+															var data = {};
+															data[$sport.attr('name')] = $sport.val();
+															
+															// Submit data via AJAX to the form's action path.
+															$.ajax({
+															url: $form.attr('action'),
+															type: $form.attr('method'),
+															data: data,
+															success: function (html) { // Replace current position field ...
+															$('#tsctgice').replaceWith(
+															// ... with the returned one from the AJAX response.
+															$(html).find('#tsctgice')
+															);
+															
+															// Position field now displays the appropriate positions.
+															}
+															});
+															});
+															</script> #}
+
+
+{% endblock %}
+

@@ -1,0 +1,27 @@
+{{ form_start(form, {attr: {class: 'filter'}}) }}
+{# <div class="p-3 mb-2 bg-primary text-white"> #}
+<div class="text-primary">
+	<button type="submit" class="btn btn-primary w-100">
+		Filtrer</button>
+
+	<h6>
+
+		Catégorie
+	</h6>
+	{{ form_row(form.tctgice)}}
+	<h6>
+		Désignation
+	</h6>
+	{{ form_row(form.ctgiceDsg)}}
+
+	<h6>
+		Niveau
+	</h6>
+	{{ form_row(form.niv)}}
+	<h6>
+		Créé depuis le
+	</h6>
+	{{ form_row(form.datIns)}}
+
+</div>
+{{ form_end(form)}}

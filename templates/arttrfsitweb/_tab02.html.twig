@@ -1,0 +1,29 @@
+<table class="table table-sm" data-toggle="table">
+	<thead class="thead-light">
+		<tr>
+			<th width="20%">Code article</th>
+			<th width="70%">désignation</th>
+			<th width="10%"></th>
+		</tr>
+	</thead>
+	<tbody>
+
+
+		{% for art in tarticle %}
+			<tr>
+				<td>
+					<a href={{path('art_aff',{'id': art.id } )}}>
+						{{art.cod}}
+					</a>
+				</td>
+				<td>{{art.libCrtFr}}</td>
+				<td>
+					<a href="{{path('arttrfsitweb_ajt',{'id':art.id})}}" class="js-status">
+						<button class="btn btn-primary btn-sm">Ajouter</button>
+					</a>
+				</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+

@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	article
+{% endblock %}
+{% block body %}
+	{% include "shared/_breadcrumb_01.html.twig" with {'var01' : 'Base article','var02':'Article lié','var03':tartcpd|length,'var10':'artcpd_creat','var11':'ARTCPD'} %}
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2">
+				{% include 'shared/_filtreArt.html.twig' with { form: form,allow_extra_fields:allow_extra_fields} %}</div>
+			<div class="col-md-10">
+				{% include 'artcpd/_tab.html.twig' with {tartcpd:tartcpd} %}
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3"></div>
+	</div>
+{% endblock %}

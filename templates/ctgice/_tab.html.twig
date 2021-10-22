@@ -1,0 +1,56 @@
+<table class="table table-sm">
+	<thead class="thead-light">
+		<tr>
+			<th></th>
+			<th>Code ice</th>
+			<th>Libellé</th>
+			<th>Niveau</th>
+			<th>Rattachée à</th>
+			<th>Active</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for ctg in tctgiceniv %}
+			<tr>
+				<td>
+					<a href="{{path('ctgice_modif',{'id': ctg.id })}}">
+						<i class="fas fa-pencil-alt"></i>
+					</a>
+				</td>
+				<td>{{ctg.idIce}}</td>
+				<td>
+					{{ctg.dsg}}
+				</td>
+				<td>{{ctg.niv}}</td>
+
+				<td>
+					{% if ctg.clrCtgiceprc is not null %}
+						{{ctg.clrCtgiceprc.dsg}}
+					{% endif %}
+				</td>
+				{% if ctg.xAct == 1 %}
+					<td>X</td>
+				{% else %}
+					<td></td>
+				{% endif %}
+				<td>
+					<a href="{{path('ctgice_supp',{'id': ctg.id })}}" onclick="Supp(this.href); return(false);">
+						<i class="fas fa-trash-alt"></i>
+					</a>
+				</td>
+
+			</tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div class="d-flex justify-content-center">
+    {{knp_pagination_render(tctgiceniv, '/pagination.html.twig')}}
+</div>
+<script type="text/javascript">
+	function Supp(link) {
+if (confirm('Confirmer la suppression ?')) {
+document.location.href = link;
+}
+}
+</script>

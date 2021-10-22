@@ -1,0 +1,74 @@
+<table class="table table-sm" data-toggle="table" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-pagination="true" data-id-field="cod" data-page-list="[50, 100, all]" data-show-export="true" data-click-to-select="true" data-response-handler="responseHandler">
+	<thead class="thead-light">
+		<tr>
+			<th></th>
+			<th data-sortable="true">Code</th>
+			<th data-sortable="true">Code constructeur</th>
+			<th data-sortable="true">Désignation adonix</th>
+			<th data-sortable="true">marque</th>
+			<th data-sortable="true">Fournisseur</th>
+			<th data-sortable="true">Famille</th>
+			<th data-sortable="true">Actif</th>
+			<th data-sortable="true">Complet</th>
+			<th></th>
+		</tr>
+	</thead>
+
+	<tbody>
+
+		{% for arttrfadx in tarttrfadx %}
+			<tr>
+				<td>
+
+					<a href="{{path('arttrfadx_modif',{'id': arttrfadx.id })}}">
+						<i class="fas fa-pencil-alt"></i>
+					</a>
+
+				</td>
+				<td>
+					<a href={{path('art_aff',{'id': arttrfadx.clrArt.id } )}}>
+						{{arttrfadx.clrArt.cod}}
+					</a>
+				</td>
+				<td>{{arttrfadx.clrArt.refCtr}}</td>
+				<td>{{arttrfadx.clrArt.lib01Adx}}</td>
+				<td>
+					{% if arttrfadx.clrArt.clrMrqice is not null %}
+						{{arttrfadx.clrArt.clrMrqice.nom}}
+					{% endif %}
+				</td>
+				<td>
+					{% for artfou in tartfou %}
+						{% if artfou.clrArt.id == arttrfadx.clrArt.id %}
+							{{artfou.clrFou.cod}}
+						{% endif %}
+					{% endfor %}
+				</td>
+				<td>
+					{% if arttrfadx.clrArt.clrFamniv1Adx is not null %}
+						{{arttrfadx.clrArt.clrFamniv1Adx.dsg}}
+					{% endif %}
+				</td>
+
+
+				<td>
+					{% if (arttrfadx.clrArt.xAct==1)%}
+						X
+					{% endif %}
+				</td>
+				<td>
+					{% if (arttrfadx.xCpl==1)%}
+						X
+					{% endif %}
+				</td>
+				<td>
+					<a href="{{path('arttrfadx_supp',{'id': arttrfadx.id })}}" onclick="Supp(this.href); return(false);">
+						<i class="fas fa-trash-alt"></i>
+					</a>
+				</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% include 'shared/_icon_supp_row_js.html.twig' %}
+

@@ -1,0 +1,53 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Catégorie
+	{{ tcategorie.dsg }}
+{% endblock %}
+{% block body %}
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item">
+			<a href="{{ path('ctl_ctg')}}">Catalogue</a>
+		</li>
+
+		<li class="breadcrumb-item active">{{tcategorie.dsg}}</li>
+	</ol>
+
+	<table class="table">
+		<tr>
+			<th></th>
+			<th></th>
+			<th>
+				<a href="#" class="btn btn-success btn-sm">Ajouter à la grille tarifaire</a>
+			</th>
+		</tr>
+		<thead>
+			<tr>
+				<th>code article</th>
+				<th>Désignation</th>
+				<th>sélection</th>
+			</tr>
+		</thead>
+		<tbody>
+
+			{% for p in tarticle %}
+
+				<tr>
+					<td>
+						<a href="{{path('ctl_ctg_art_aff',{'id': p.id })}}">{{p.cod}}</a>
+					</td>
+
+					{# class="card"> #}
+					{# <img src={{p.mainPicture}} class="img-fluid" alt="Image du produit"> #}
+
+					<td>{{ p.libCrtFr }}</td>
+					<td>
+						<span style="color:#ff0000;"><input type="checkbox" value="false" name="test"></span>
+						{# <a href="{{path('cart_add',{'id': p.id})}}" class="btn btn-success btn-sm">Ajouter</a> #}
+					</td>
+				</tr>
+
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

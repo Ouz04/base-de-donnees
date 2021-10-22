@@ -1,0 +1,48 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Gestion grille tarifaire
+{% endblock %}
+{% block body %}
+	<div class="breadcrumb d-flex justify-content-between align-items-center">
+
+		<ol class="breadcrumb mb-0 p-0">
+			<li class="breadcrumb-item">
+				Grille tarifaire
+			</li>
+			<li class="breadcrumb-item">
+				{% if tgritarett.clrCli is not null %}
+					{{tgritarett.clrCli.cod}}
+				{% endif %}
+
+			</li>
+			<li class="breadcrumb-item">
+				{{tgritarett.cod}}
+				->
+				{{nbArt}}
+				articles
+
+			</li>
+		</ol>
+		<div>
+			<button type="button" class="btn btn-primary btn-sm">
+				<span class="glyphicon glyphicon-upload">
+					<i class="fa fa-upload" aria-hidden="true">Télécharger</i>
+				</button>
+
+				{# <a href="{{ path('gtapsts_modif',{'idGta': tgritarett.id } )}}" class="btn btn-primary btn-sm"> #}
+
+
+					Enregistrer</a>
+			</li>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-2">
+			{% include 'shared/_filtreArt.html.twig' with { form: form,allow_extra_fields:allow_extra_fields} %}</div>
+		<div class="col-10">
+			{% include 'gritargst/_tab_gtagst.html.twig' with {tgritarpst:tgritarpst} %}
+
+
+		</div>
+	</div>
+{% endblock %}

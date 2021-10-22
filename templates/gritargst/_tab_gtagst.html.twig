@@ -1,0 +1,53 @@
+<table class="table table-sm">
+	<thead class="thead-light">
+		<tr>
+			<th width="10%">Code</th>
+			<th width="25%">Désignation</th>
+			<th width="15%">Catégorie</th>
+			<th width="5%">fourn.</th>
+			<th width="5%">condit.</th>
+			<th width="5%">Stock</th>
+			<th width="5%">Prix d'achat</th>
+			<th width="5%">Marge</th>
+			<th width="5%">Prix de vente</th>
+			<th width="5%">BPU</th>
+			<th width="5%">Devis</th>
+
+			<th></th>
+
+
+		</tr>
+	</thead>
+	<tbody>
+
+		{% for gtapst in tgritarpst %}
+
+
+			<tr>
+
+				<td>
+					{% if gtapst.clrArt is not null %}
+						<a href="{{path('art_aff',{'id': gtapst.clrArt.id })}}">{{gtapst.clrArt.cod}}</a>
+					{% else %}
+						{{gtapst.codArt}}
+					{% endif %}
+				</td>
+
+
+				<td>{{gtapst.libArt}}</td>
+				<td>
+					{% if gtapst.clrArt is not null %}
+						{{gtapst.clrArt.clrCtgice.clrNiv1.dsg}}
+					{% endif %}
+
+				</td>
+				<td>{{gtapst.txMrg|number_format(2, '.', ',')}}</td>
+				<td>{{gtapst.prxVte|number_format(2, '.', ',')}}</td>
+				<td>{{gtapst.xBpu}}</td>
+				<td>{{gtapst.xDvs}}</td>
+
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% include 'shared/_icon_supp_row_js.html.twig' %}

@@ -1,0 +1,35 @@
+<table class="table table-sm">
+	<thead class="thead-light">
+		<tr>
+			<th></th>
+			<th>code cotation</th>
+			<th>code famille</th>
+			<th>Date de début</th>
+			<th>Date de fin</th>
+			<th>Créé par</th>
+			<th>Le</th>
+			<th></th>
+		</tr>
+	</thead>
+
+	<tbody>
+
+		{% for cotfamcli in tcotfamcli%}
+			<tr>
+				<td>{% include "shared/_icon_edit_row.html.twig" with {'var01' : 'cotfamcli_modif','var02':cotfamcli.id} %}</td>
+
+				<td>{{cotfamcli.clrCot.cod}}</td>
+				<td>{{cotfamcli.clrFamcli.cod}}</td>
+				<td>{{cotfamcli.datDeb|date("d/m/Y")}}</td>
+				<td>{{cotfamcli.datFin|date("d/m/Y")}}
+				</td>
+				<td>{{cotfamcli.usrIns.nom}}</td>
+				<td>{{cotfamcli.datIns|date("d/m/Y")}}</td>
+
+				<td>{% include "shared/_icon_supp_row.html.twig" with {'var01' : 'cotfamcli_supp','var02':cotfamcli.id } %}</td>
+
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% include 'shared/_icon_supp_row_js.html.twig' %}

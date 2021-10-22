@@ -1,0 +1,58 @@
+<table class="table table-sm" id="tableSectionDetails">
+ 	 
+    <thead class="thead-light">
+        {% include 'gritarcol/_tabGtaColEtt.html.twig' %}
+    </thead>
+    <tbody>
+         
+        {{ form_start(form) }}
+        
+            {# store the prototype on the data-prototype attribute #}
+            <div class="col-sm-8 col-sm-offset-2" id="exp_list" 
+                data-prototype="{{ form_widget(form.tgritarpsts.vars.prototype)|e('html_attr') }}"
+{# {% dump form.tgritarpsts %} #}
+                {% for tag in form.tgritarpsts %}
+           {# {% dump tag.vars.data.codArt %} #}
+                    <tr>
+                        {# <td>{{ (string)form_row(tag.id) }}</td> #}
+                        <td>{{ form_row(tag.codArt) }}</td>
+                        <td>{{ form_row(tag.libArt) }}</td>
+                        <td>{{ form_row(tag.codArtCli) }}</td>
+
+
+                        {# <td>{{ form_row(tag.txMrg) }}</td> #}
+                        {# <td>{{ form_row(tag.txMrg) }}</td> #}
+                        <td>{{ form_row(tag.prxAch) }}</td>
+                        {# <td>{{ form_row(tag.clrArtfou) }}</td> #}
+                        <td>{{ form_row(tag.prxVte) }}</td>
+                        <td>{{ form_row(tag.prxTxe) }}</td>
+                        <td>{{ form_row(tag.prxTxs) }}</td>
+                        <td>{{ form_row(tag.xBpu) }}</td>
+                        <td>{{ form_row(tag.xDvs) }}</td>
+
+
+                    
+                        <td>
+                            {% include "shared/_icon_supp_row.html.twig" with {'var01' : 'gritarcol_supp','var02':tag.vars.value.id } %}</td>
+                        </td>
+                    </tr>
+                     {# affiche données tartfou  #}
+                    {% include 'gritarcol/_tabGtaColPstArtfou.html.twig' with {tarfou:tartfou,'tag.vars.data' : tag.vars.data} %}
+                            
+                       
+                    
+
+                {% endfor %}
+            </div>
+        {{ form_end(form) }}
+    
+    </tbody>
+	
+</table>
+{% include 'shared/_icon_supp_row_js.html.twig' %}
+<div class="d-flex justify-content-center">
+{{knp_pagination_render(tgritarpsts, '/pagination.html.twig')}}
+</div>
+
+
+<script src="{{asset('assets/js/gta/mainGta.js')}}"></script>

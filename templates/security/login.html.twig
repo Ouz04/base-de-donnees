@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}connexion
+{% endblock %}
+
+{% block body %}
+	{# {{ form_start(formView) }}
+			{{ form_widget(formView) }}
+			<button type="submit" class="btn btn-success">connexion</button>
+			{{form_end(formView)}} #}
+	{% if error %}
+		<div class="alert alert-danger">
+			{{ error.message }}
+		</div>
+	{% endif %}
+	<h1>Connexion</h1>
+	{{ form_start(formView) }}
+	{{ form_widget(formView) }}
+	<p>
+    <a href="{{path('app_forgotten_password')}}">Mot de passe oublié ?</a>
+    </p>
+	<button type="submit" class="btn btn-success">connexion</button>
+	{{form_end(formView)}}
+{% endblock %}

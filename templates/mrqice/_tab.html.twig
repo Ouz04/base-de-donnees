@@ -1,0 +1,55 @@
+<table class="table table-sm" data-toggle="table" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-pagination="true" data-id-field="cod" data-page-list="[10, 100, all]" data-show-export="true" data-click-to-select="true" data-response-handler="responseHandler">
+	<thead class="thead-light">
+		<tr>
+			<th></th>
+			<th data-sortable="true">code</th>
+			<th data-sortable="true">Nom</th>
+			<th data-sortable="true">Id Ice</th>
+			<th data-sortable="true">Actif</th>
+			<th data-sortable="true" data-visible="false">Créé par</th>
+			<th data-sortable="true" data-visible="false">Le</th>
+			<th data-sortable="true" data-visible="false">Modifié par</th>
+			<th data-sortable="true" data-visible="false">Le</th>
+
+		</tr>
+	</thead>
+	<tbody>
+		{% for mrqice in tmrqice %}
+			<tr>
+				<td>
+					{% include "shared/_icon_edit_row.html.twig" with {'var01' : 'mrqice_modif','var02':mrqice.id } %}
+				</td>
+				<td>
+					{{mrqice.cod}}
+				</td>
+				<td>{{mrqice.nom}}</td>
+				<td>{{mrqice.idIce}}</td>
+
+				{% if (mrqice.xAct==1)%}
+					<td>X</td>
+				{% else %}
+					<td></td>
+				{% endif %}
+				<td>
+					{% if mrqice.usrIns is not null %}
+						{{mrqice.usrIns.nom}}
+					{% endif %}
+				</td>
+				<td>{{mrqice.datIns|date("d/m/Y h:m")}}</td>
+				{% if mrqice.usrUpd is not null %}
+					<td>{{mrqice.usrUpd.nom}}</td>
+					<td>{{mrqice.datUpd|date("d/m/Y h:m")}}</td>
+				{% else %}
+					<td></td>
+					<td></td>
+				{% endif %}
+				{# <td> #}
+			{# {% include "shared/_icon_supp_row.html.twig" with {'var01' : 'mdl_supp','var02':mrqice.id } %} #}
+
+				{# </td> #}
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% include 'shared/_icon_supp_row_js.html.twig' %}
+

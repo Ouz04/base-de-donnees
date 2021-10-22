@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Catalogue
+{% endblock %}
+{% block body %}
+
+	{% include "shared/_breadcrumb_00_ctl.html.twig" with {'var01' : 'Catalogue','var03':tarticle|length,'var10':'art_ajt',tgritarett:tgritarett} %}
+	<div class="row">
+		<div class="col-2">
+			{% include 'shared/_filtreArt.html.twig' with { form: form} %}
+		</div>
+
+		<div class="col-10">
+			{% include 'catalogue/_tabCtl.html.twig' with {tarticle:tarticle} %}
+		</div>
+	</div>
+
+{% endblock %}

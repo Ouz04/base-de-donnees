@@ -1,0 +1,48 @@
+<table class="table table-sm" data-toggle="table" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-pagination="true" data-id-field="cod" data-page-list="[50, 100, all]" data-show-export="true" data-click-to-select="true" data-response-handler="responseHandler">
+	<thead class="thead-light">
+		<tr>
+			<th data-sortable="true">Code</th>
+			<th data-sortable="true">Code constructeur</th>
+			<th data-sortable="true">Désignation</th>
+			<th data-sortable="true">marque</th>
+			<th data-sortable="true">Actif</th>
+			<th></th>
+		</tr>
+	</thead>
+
+	<tbody>
+
+		{% for arttrfsitweb in tarttrfsitweb %}
+			<tr>
+
+				<td>
+					<a href={{path('art_aff',{'id': arttrfsitweb.clrArt.id } )}}>
+						{{arttrfsitweb.clrArt.cod}}
+					</a>
+				</td>
+				<td>{{arttrfsitweb.clrArt.refCtr}}</td>
+				<td>{{arttrfsitweb.clrArt.libCrtFr}}</td>
+				<td>
+					{% if arttrfsitweb.clrArt.clrMrqice is not null %}
+						{{arttrfsitweb.clrArt.clrMrqice.nom}}
+					{% endif %}
+				</td>
+
+
+				<td>
+					{% if (arttrfsitweb.clrArt.xAct==1)%}
+						X
+					{% endif %}
+				</td>
+
+				<td>
+					<a href="{{path('arttrfsitweb_supp',{'id': arttrfsitweb.id })}}" onclick="Supp(this.href); return(false);">
+						<i class="fas fa-trash-alt"></i>
+					</a>
+				</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% include 'shared/_icon_supp_row_js.html.twig' %}
+

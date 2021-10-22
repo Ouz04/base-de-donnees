@@ -1,0 +1,35 @@
+<table class="table table-sm" data-toggle="table" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-pagination="true" data-id-field="cod" data-page-list="[50, 100, all]" data-show-export="true">
+	<thead class="thead-light">
+		<tr>
+
+			<th data-sortable="true">Code organisation</th>
+			<th data-sortable="true">Nom</th>
+			<th data-sortable="true">Cp</th>
+			<th data-sortable="true">Localité</th>
+			<th data-sortable="true">Commercial</th>
+			<th data-sortable="true">Grille tarifaire</th>
+
+		</tr>
+	</thead>
+
+	<tbody>
+
+		{% for cli in tclient %}
+			<tr>
+
+				<td>
+					{{cli.cod}}
+				</td>
+				<td>{{cli.nom}}</td>
+				<td>{{cli.cp}}</td>
+				<td>{{cli.lclt}}</td>
+				<td>{{cli.clrCml.cod}}</td>
+				<td>
+					<a href="{{path('gtaettcli_gst',{'id': cli.id })}}">{{cli.tgritaretts.count}}</a>
+				</td>
+			</tr>
+
+		{% endfor %}
+
+	</tbody>
+</table>

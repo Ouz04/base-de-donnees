@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	cotation-organisation
+{% endblock %}
+{% block body %}
+
+	{% include "shared/_breadcrumb_01.html.twig" with {'var01' : 'Donnée de base','var02':'Cotation-organisation','var03':tcotorg|length,'var10':'cotorg_creat','var11':'0'} %}
+
+	<div class="row">
+		<div class="col-md-2">
+			{% include 'cotorg/_filtreCotorg.html.twig' with { form: form} %}</div>
+		<div class="col-md-10">
+			{% include "cotorg/_tab.html.twig" with {'tcotorg' : tcotorg} %}
+		</div>
+	</div>
+
+{% endblock %}

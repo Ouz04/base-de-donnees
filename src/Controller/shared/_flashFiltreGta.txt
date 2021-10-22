@@ -1,0 +1,6 @@
+ <?php
+
+    $nb = count($tgritarpst);
+    if ($nb == $maxResult) {
+        $this->addFlash("warning", "Attention : tous les articles issus de la recherche ne sont pas affichés. C'est limité à " . $maxResult);
+    }

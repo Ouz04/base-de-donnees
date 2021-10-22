@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Dictionnaire
+{% endblock %}
+{% block body %}
+	{% include "shared/_breadcrumb_01.html.twig" with {'var01' : 'Donnée de base','var02':'Dictionnaire','var03':tsoc|length,'var10':'dic_creat','var11':'Dictionnaire'} %}
+	<div class="row">
+		<div class="col-md-12">
+			{% include "dictionnaire/_tab.html.twig" with {'tsoc' : tsoc} %}
+		</div>
+	</div>
+
+{% endblock %}
+

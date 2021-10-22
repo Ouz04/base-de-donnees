@@ -1,0 +1,30 @@
+<table class="table table-sm" data-toggle="table" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-pagination="true" data-id-field="cod" data-page-list="[10, 25, all]" data-show-export="true">
+	<thead class="thead-light">
+		<tr>
+			<th></th>
+			<th data-sortable="true">Client</th>
+			<th data-sortable="true">Organisation</th>
+			<th data-sortable="true">Créé par</th>
+			<th data-sortable="true">le</th>
+			<th></th>
+
+		</tr>
+	</thead>
+	<tbody>
+		{% for cliorg in tcliorg %}
+			<tr>
+				<td>
+					{% include "shared/_icon_edit_row.html.twig" with {'var01' : 'cliorg_modif','var02':cliorg.id } %}
+				</td>
+				<td>
+					{{cliorg.clrCli.cod}}
+				</td>
+				<td>{{cliorg.clrOrg.cod}}</td>
+				<td>{{cliorg.usrIns.nom}}</td>
+				<td>{{cliorg.datIns|date("d/m/Y h:m")}}</td>
+				<td>{% include "shared/_icon_supp_row.html.twig" with {'var01' : 'cliorg_supp','var02':cliorg.id } %}</td>
+			</tr>
+
+
+		{% endfor %}
+	</tbody>

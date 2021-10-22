@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Creation article lié
+{% endblock %}
+
+{% block body %}
+	{% include "shared/_breadcrumb_02_fiche.html.twig" with {'var01' : 'Article lié','var02':'Création','var10':'artcpd_gst'} %}
+
+	{{ form_start(formView)}}
+
+	{{ form_errors(formView)}}
+
+	{{ form_widget(formView)}}
+
+
+	<button type="submit" class="btn btn-success">Enregistrer</button>
+
+	{{ form_end(formView)}}
+{% endblock %}

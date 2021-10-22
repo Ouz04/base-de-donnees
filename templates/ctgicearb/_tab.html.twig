@@ -1,0 +1,97 @@
+<table class="table table-sm">
+    <thead class="thead-light">
+        <tr>
+            <th></th>
+            <th>Code ice</th>
+            <th>Niveau 1</th>
+            <th>Niveau 2</th>
+            <th>Niveau 3</th>
+            <th>Niveau 4</th>
+            {# <th>Nombre d'articles</th> #}
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+       {% set vClrNiv1="" %}
+        {% set vClrNiv2="" %}
+        {% set vClrNiv3="" %}
+        {% set vClrNiv4="" %}
+        {% for ctg in tctgicearb %}
+            <tr>
+                <td> 
+				 
+                    <a href="{{path('ctgicearb_modif',{'id': ctg.id })}}">
+                        <i class="fas fa-pencil-alt"></i>
+                    </a>   
+                </td> 
+                <td>   
+                    {{ctg.idIce}}
+                </td>
+				
+                <td>
+						
+									 
+					   
+	 
+					 
+					
+                    {% if ctg.clrNiv1 != vClrNiv1 %}
+
+                        {{ctg.clrNiv1}}
+
+                    {% endif %}
+
+                    {% set vClrNiv1=ctg.clrNiv1 %}
+                </td>
+                <td>
+                    {% if ctg.clrNiv2 != vClrNiv2 %}
+
+                        {{ctg.clrNiv2}}
+
+                    {% endif %}
+
+                    {% set vClrNiv2=ctg.clrNiv2 %}
+                </td>
+                <td>
+                    {% if ctg.clrNiv3 != vClrNiv3 %}
+
+                        {{ctg.clrNiv3}}
+
+                    {% endif %}
+
+                    {% set vClrNiv3=ctg.clrNiv3 %}
+                </td>
+                <td>
+                    {% if ctg.clrNiv4 != vClrNiv4 %}
+
+                        {{ctg.clrNiv4}}
+
+                    {% endif %}
+
+                    {% set vClrNiv4=ctg.clrNiv4 %}
+                </td>                
+													
+
+                <td>
+
+                    <a href="{{path('ctgicearb_supp',{'id': ctg.id })}}" onclick="Supp(this.href); return(false);">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </td>
+
+            </tr>
+       
+        {% endfor %}
+    </tbody>
+</table>
+<div class="d-flex justify-content-center">
+    {{knp_pagination_render(tctgicearb, '/pagination.html.twig')}}
+</div>
+
+<script type="text/javascript">
+    function Supp(link) {
+if (confirm('Confirmer la suppression ?')) {
+document.location.href = link;
+}
+}
+</script>

@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Article Grille tarifaire
+{% endblock %}
+{% block body %}
+
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item">
+			<a href="{{ path('gtaettcli_gst',{'id' : tgritarett.clrCli.id}) }}">Grilles tarifaires</a>
+		</li>
+		<li class="breadcrumb-item active">Client :
+			{{tgritarett.clrCli.cod}}
+		</li>
+		<li class="breadcrumb-item active">Article :
+			{{tgritarpst|length}}
+		</li>
+	</ol>
+    <div style=float: rigth;>
+        <button type="button" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-upload"></span>
+            <i class="fa fa-upload" aria-hidden="true"> Télécharger</a></i>
+        </button>
+
+        <a href={{path('gtapst_download',{'id' : tgritarett.id})}} class="btn btn-primary btn-sm">Imprimer<a/>
+    </div>
+
+	{% include "gritar/_tab_pst.html.twig" with {'tgritarpst' : tgritarpst} %}
+{% endblock %}

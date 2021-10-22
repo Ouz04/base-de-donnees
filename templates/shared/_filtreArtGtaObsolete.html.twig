@@ -1,0 +1,87 @@
+{{ form_start(form) }}
+
+
+{# <div class="p-3 mb-2 bg-primary text-white"> #}
+<div class="text-primary">
+	<button type="submit" class="btn btn-primary w-100">
+		Sélectionner</button>
+	<h6></h6>
+	{% if allow_extra_fields=='03' %}
+		<h6>
+			Fournisseur
+		</h6>
+		{{ form_row(form.tfournisseur)}}
+	{% endif %}
+
+	<h6>
+		Code article
+	</h6>
+	{{ form_row(form.codArt)}}
+	<h6>
+		Référence constructeur
+
+	</h6>
+	{{ form_row(form.refCtr)}}
+	{% if allow_extra_fields == '01' or allow_extra_fields == '02' or allow_extra_fields == '03' or allow_extra_fields == '04' %}
+		<h6>
+			Désignation
+		</h6>
+		{{ form_row(form.lib)}}
+		<h6>
+			Marque
+		</h6>
+		{{ form_row(form.tmrqice)}}
+
+
+		<h6>
+			Catégorie
+		</h6>
+		{{ form_row(form.tctgice)}}
+		<h6>
+			Sous catégorie
+			{{ form_row(form.tsctgice)}}
+		</h6>
+	{% endif %}
+
+	<input type="TextType" name="txMrg">
+  <input type="submit" method="POST" value="Appliquer marge sur sélection" class="btn btn-primary w-100">
+{{ form_end(form) }}
+
+</div>
+
+
+{{ form_end(form)}}
+
+<script>
+
+	console.log('lu1');
+	var $sport = $('#tctgice');
+	console.log($sport);
+	// When sport gets selected ...
+	$sport.change(function () { // ... retrieve the corresponding form.
+		console.log('lu3');
+		var $form = $(this).closest('form');
+		console.log('lu4');
+
+		// Simulate form data, but only include the selected sport value.
+		var data = {};
+		data[$sport.attr('name')] = $sport.val();
+
+		// Submit data via AJAX to the form's action path.
+		$.ajax({
+			url: $form.attr('action'),
+			type: $form.attr('method'),
+			data: data,
+			success: function (html) { // Replace current position field ...
+				$('#tsctgice').replaceWith(
+				// ... with the returned one from the AJAX response.
+					$(html).find('#tsctgice')
+				);
+
+	// Position field now displays the appropriate positions.
+			}
+		});
+	});
+</script>
+
+

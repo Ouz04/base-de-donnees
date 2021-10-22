@@ -1,0 +1,50 @@
+<table class="table table-sm" data-toggle="table" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-pagination="true" data-id-field="cod" data-page-list="[50, 100, all]" data-show-export="true" data-click-to-select="true" data-response-handler="responseHandler">
+	<thead class="thead-light">
+		<tr>
+			<th></th>
+			<th data-sortable="true">Fichier</th>
+			<th data-sortable="true">Raison sociale</th>
+			<th data-sortable="true">Code Adx</th>
+			<th data-sortable="true">Actif</th>
+			<th data-sortable="true">Créé par</th>
+			<th data-sortable="true">Le</th>
+			<th data-sortable="true">Modifié par</th>
+			<th data-sortable="true">Le</th>
+
+		</tr>
+	</thead>
+
+	<tbody>
+		{% for fou in tfournisseur %}
+			<tr>
+
+				<td>{% include "shared/_icon_edit_row.html.twig" with {'var01' : 'fou_modif','var02':fou.id} %}</td>
+
+
+				<td>
+					{{fou.cod}}
+				</td>
+				<td>{{fou.rso}}</td>
+				<td>{{fou.codAdx}}</td>
+				<td>
+					{% if (fou.xAct==1)%}
+						X
+					{% endif %}
+				</td>
+				<td>{{fou.usrIns.nom}}</td>
+				<td>{{fou.datIns|date("d/m/Y h:m")}}</td>
+
+
+				{% if fou.usrUpd is not null %}
+					<td>{{fou.usrUpd.nom}}</td>
+					<td>{{fou.datUpd|date("d/m/Y h:i")}}</td>
+				{% else %}
+					<td></td>
+					<td></td>
+				{% endif %}
+
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+

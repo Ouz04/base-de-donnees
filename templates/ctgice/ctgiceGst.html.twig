@@ -1,0 +1,19 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	commerical
+{% endblock %}
+{% block body %}
+	{% include "shared/_breadcrumb_01.html.twig" with {'var01' : 'Donnée de base','var02':'Catégorie','var03':tctgiceniv|length,'var10':'ctgice_creat','var11':'CTGICE'} %}
+	{# <h1>Gestion commercial</h1> #}
+
+
+	<div class="row">
+		<div class="col-md-2">
+			{% include 'ctgice/_filtreCtgice.html.twig' with { form: form} %}</div>
+		<div class="col-md-10">
+			{% include "ctgice/_tab.html.twig" with {'tctgiceniv' : tctgiceniv} %}
+		</div>
+	</div>
+
+{% endblock body %}

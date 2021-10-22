@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Groupe Societe
+{% endblock %}
+{% block body %}
+	{% include "shared/_breadcrumb_01.html.twig" with {'var01' : 'Donnée de base','var02':'Groupe Societe','var03':tsoc|length,'var10':'socgpe_creat','var11':'Goupe Societe'} %}
+	<div class="row">
+		<div class="col-md-12">
+			{% include "socgpe/_tab.html.twig" with {'tsoc' : tsoc} %}
+		</div>
+	</div>
+
+
+{% endblock %}
+

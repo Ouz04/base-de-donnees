@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	client
+{% endblock %}
+{% block body %}
+	{% include "shared/_breadcrumb_01.html.twig" with {'var01' : 'Donnée de base','var02':'Client','var03':tclient|length,'var10':'cli_creat','var11':'CLIENT'} %}
+	<div class="row">
+		<div class="col-md-2">
+			{% include 'client/_filtreCli.html.twig' with { form: form} %}</div>
+		<div class="col-md-10">
+			{% include "client/_tab.html.twig" with {'tclient' : tclient} %}
+		</div>
+	</div>
+
+{% endblock %}
+

@@ -1,0 +1,10 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	utilisateur-commercial
+{% endblock %}
+{% block body %}
+	{% include "shared/_breadcrumb_01.html.twig" with {'var01' : 'Adminstration','var02':'Client-Organisation','var03':tcliorg|length,'var10':'cliorg_creat','var11':'CLIORG'} %}
+	{% include "cliorg/_tab.html.twig" with {'tuser' : tcliorg} %}
+
+{% endblock %}
